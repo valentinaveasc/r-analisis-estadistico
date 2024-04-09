@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,14 +18,49 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -39,8 +74,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="r-analisis-estadistico_files/libs/clipboard/clipboard.min.js"></script>
@@ -103,29 +137,50 @@ div.csl-indent {
 <p>Siguiendo con el concepto de cohesión social, desde la sociología se ha estudiado la forma en que la religión se relaciona con la cohesión social. Como señala <span class="citation" data-cites="annetteschnabelGodWeTrust2014">Annette Schnabel et al. (<a href="#ref-annetteschnabelGodWeTrust2014" role="doc-biblioref">2014</a>)</span>, desde los trabajos de Emile Durkheim sobre religión se desarrolla una propuesta en la que el autor establece que además de ser un hecho social, la religión es una base de construcción de solidaridad social e integración.</p>
 <p>Volviendo al tema de las problemáticas del sistema político, estas se pueden vincular con el fenómeno de la religión. Como expresa <span class="citation" data-cites="evgueniafediakovaSeparatismoParticipacionEvangelicos2002">Evguenia Fediakova (<a href="#ref-evgueniafediakovaSeparatismoParticipacionEvangelicos2002" role="doc-biblioref">2002</a>)</span>, el factor religioso es determinante en la política, pese a que algunas comunidades puedan poseer cierto hermetismo no se ven exentas de incidir en la política y en la cultura. Por otro lado la propuesta investigativa de <span class="citation" data-cites="ignaciocaceresReincorporandoReligionComprension2022">Ignacio Cáceres (<a href="#ref-ignaciocaceresReincorporandoReligionComprension2022" role="doc-biblioref">2022</a>)</span> plantea explorar las dimensiones tanto horizontal como vertical de la cohesión social y como impacta la religión en estas dimensiones. De este modo se vincula con la problemática central de esta investigación, ya que como establece <span class="citation" data-cites="ignaciocaceresReincorporandoReligionComprension2022">Ignacio Cáceres (<a href="#ref-ignaciocaceresReincorporandoReligionComprension2022" role="doc-biblioref">2022</a>)</span>, por un lado en la dimensión horizontal de la cohesión social, se explora la confianza social en la que se espera que la participación en servicios religiosos fomente la confianza en el otro, como consecuencia de desarrollarse en espacios donde el conocimiento y colaboración entre actores son fundamentales. Por otro lado en la dimensión vertical se espera que en forma de su relacionamiento con la política, los grupos religiosos presenten mayores niveles de confianza hacia la política y que posean una actitud cívica mayor en comparación a quienes no pertenecen o se identifican con alguna religión; esto debido a que como la misma investigación expone, “la religión provee a las personas de un marco interpretativo desde el cual posicionarse en la esfera política” <span class="citation" data-cites="ignaciocaceresReincorporandoReligionComprension2022">(<a href="#ref-ignaciocaceresReincorporandoReligionComprension2022" role="doc-biblioref">Ignacio Cáceres 2022, 156</a>)</span>. De este modo se explicaría una incursión en el mundo político de parte de personas religiosas como consecuencia de unos valores sociales mucho más rígidos y establecidos.</p>
 <p>Considerando lo anteriormente expuesto, se propone como objeto central de esta investigación poder observar la confianza hacia el sistema político de parte de quienes profesan o se identifican con alguna corriente religiosa para compararla con los niveles de confianza de quienes no son religiosos. Partiendo de la hipótesis proveniente de la propuesta de investigación de <span class="citation" data-cites="ignaciocaceresReincorporandoReligionComprension2022">Ignacio Cáceres (<a href="#ref-ignaciocaceresReincorporandoReligionComprension2022" role="doc-biblioref">2022</a>)</span>, en la que se espera que quienes se identifican con alguna religión presenten mayores niveles de confianza en la política en comparación a quienes no lo hacen. De este modo se trabajará con la base de datos de la encuesta LAPOP Barómetro de las Américas, en su medición del año 2023 en Chile.</p>
+</section>
+<section id="análisis-descriptivo" class="level2">
+<h2 class="anchored" data-anchor-id="análisis-descriptivo">Análisis descriptivo</h2>
+</section>
+<section id="cargar-paquetes" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-paquetes">Cargar paquetes</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(sjlabelled,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               dplyr, <span class="co">#Manipulacion de datos</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              stargazer, <span class="co">#Tablas</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>              sjmisc, <span class="co"># Tablas</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>              summarytools, <span class="co"># Tablas</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>              kableExtra, <span class="co">#Tablas</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              sjPlot, <span class="co">#Tablas y gráficos</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              corrplot, <span class="co"># Correlaciones</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>              sessioninfo, <span class="co"># Información de la sesión de trabajo</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>              ggplot2) <span class="co"># Para la mayoría de los gráficos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="base-de-datos" class="level2 unnumbered">
+
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-annetteschnabelGodWeTrust2014" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Base de datos</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-annetteschnabelGodWeTrust2014" class="csl-entry" role="listitem">
 Annette Schnabel, Annette Schnabel, Florian Groetsch, and Florian Groetsch. 2014. <span>“In <span>God</span> We Trust – the Role of Religion for Cohesion and Integration in Current <span>European</span> Societies.”</span> <em>European Journal of Cultural and Political Sociology</em> 1 (4): 375–98. <a href="https://doi.org/10.1080/23254823.2015.1057752">https://doi.org/10.1080/23254823.2015.1057752</a>.
 </div>
-<div id="ref-evgueniafediakovaSeparatismoParticipacionEvangelicos2002" class="csl-entry" role="doc-biblioentry">
+<div id="ref-evgueniafediakovaSeparatismoParticipacionEvangelicos2002" class="csl-entry" role="listitem">
 Evguenia Fediakova. 2002. <span>“Separatismo o Participaci<span>ó</span>n: Evang<span>é</span>licos Chilenos Frente a La Pol<span>í</span>tica.”</span> <em>Revista De Ciencia Politica</em> 22 (2): 32–45. <a href="https://doi.org/10.4067/s0718-090x2002000200003">https://doi.org/10.4067/s0718-090x2002000200003</a>.
 </div>
-<div id="ref-fabianriffoQueInfluyeConfianza2019" class="csl-entry" role="doc-biblioentry">
+<div id="ref-fabianriffoQueInfluyeConfianza2019" class="csl-entry" role="listitem">
 Fabian Riffo, Fabian Riffo, Daniela Pérez, Daniela Pérez, César Antonio Salazar Espinoza, César Salazar Espinoza, César Antonio Salazar Espinoza, Andrés A. Acuña-Duarte, Andrés A. Acuña-Duarte, and Andrés A. Acuña Duarte. 2019. <span>“<span></span><span>Qu<span>é</span></span> Influye En La Confianza En Las Instituciones? <span>Evidencia</span> Emp<span>í</span>rica Para <span>Chile</span>.”</span> <em>Revista Facultad de Ciencias Econ<span>ó</span>micas</em> 27 (2): 83–104. <a href="https://doi.org/10.18359/rfce.3517">https://doi.org/10.18359/rfce.3517</a>.
 </div>
-<div id="ref-ignaciocaceresReincorporandoReligionComprension2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-ignaciocaceresReincorporandoReligionComprension2022" class="csl-entry" role="listitem">
 Ignacio Cáceres. 2022. <span>“Reincorporando La Religi<span>ó</span>n En La Comprensi<span>ó</span>n de La Cohesi<span>ó</span>n Social En <span class="nocase">Latinoam<span class="nocase">é</span>rica</span>.”</span> <em>Revista Temas Sociol<span>ó</span>gicos</em>, no. 30 (July): 137–67. <a href="https://doi.org/10.29344/07196458.30.3194">https://doi.org/10.29344/07196458.30.3194</a>.
 </div>
-<div id="ref-ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022" class="csl-entry" role="listitem">
 Ignacio Sepúlveda-Rodríguez, and Luis Garrido-Vergara. 2022. <span>“Satisfacci<span>ó</span>n Con La Democracia y Legitimidad En <span>Chile</span>.”</span> <em>Revista de Sociolog<span>í</span>a</em> 37 (2): 1–15. <a href="https://doi.org/10.5354/0719-529x.2022.69099">https://doi.org/10.5354/0719-529x.2022.69099</a>.
 </div>
-<div id="ref-josephchanRECONSIDERINGSOCIALCOHESION2006" class="csl-entry" role="doc-biblioentry">
+<div id="ref-josephchanRECONSIDERINGSOCIALCOHESION2006" class="csl-entry" role="listitem">
 Joseph Chan, Joseph Chan, Joseph Chan, Joseph Chan, Ho-Pong To, Ho-Pong To, Elaine Chan, and Elaine Chan. 2006. <span>“<span>RECONSIDERING SOCIAL COHESION</span>: <span>DEVELOPING A DEFINITION AND ANALYTICAL FRAMEWORK FOR EMPIRICAL RESEARCH</span>.”</span> <em>Social Indicators Research</em> 75 (2): 273–302. <a href="https://doi.org/10.1007/s11205-005-2118-1">https://doi.org/10.1007/s11205-005-2118-1</a>.
 </div>
-<div id="ref-mauriciomoralesquirogaEstallidoSocialChile2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-mauriciomoralesquirogaEstallidoSocialChile2020" class="csl-entry" role="listitem">
 Mauricio Morales Quiroga. 2020. <span>“Estallido Social En <span>Chile</span> 2019: Participaci<span>ó</span>n, Representaci<span>ó</span>n, Confianza Institucional y Esc<span>á</span>ndalos p<span>ú</span>blicos”</span> 33 (98): 3–25. <a href="https://doi.org/10.15446/anpol.v33n98.89407">https://doi.org/10.15446/anpol.v33n98.89407</a>.
 </div>
 </div></section></div></main>
@@ -157,9 +212,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -224,6 +293,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
