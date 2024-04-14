@@ -33,20 +33,20 @@ Considerando lo anteriormente expuesto, se propone como objeto central de esta i
 ## Cargar paquetes
 
 ```{r}
-pacman::p_load(sjlabelled,
-               dplyr, #Manipulacion de datos
-              stargazer, #Tablas
-              sjmisc, # Tablas
-              summarytools, # Tablas
-              kableExtra, #Tablas
-              sjPlot, #Tablas y gráficos
-              corrplot, # Correlaciones
-              sessioninfo, # Información de la sesión de trabajo
-              ggplot2) # Para la mayoría de los gráficos
+pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,
+               kableExtra, ggplot2, sjPlot)
 ```
 
-## Base de datos
+## Cargar base de datos
 
 ```{r}
+lapop_2023 = read_dta("Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta")
+
+```
+
+## Selección de variables
+
+```{r}
+find_var(data = lapop_2023,"Confianza")
 
 ```
