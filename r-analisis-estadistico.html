@@ -149,9 +149,6 @@ div.csl-indent {
 
 </header>
 
-<section id="religión-en-chile-y-la-confianza-en-el-sistema-político" class="level2">
-<h2 class="anchored" data-anchor-id="religión-en-chile-y-la-confianza-en-el-sistema-político">Religión en Chile y la confianza en el sistema político</h2>
-</section>
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
 <p>En el marco de los problemas que presenta el sistema político chileno, distintos estudios han explorado factores que influyen en el buen funcionamiento de las instituciones democráticas. En ese contexto, como señalan <span class="citation" data-cites="ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022">Ignacio Sepúlveda-Rodríguez and Luis Garrido-Vergara (<a href="#ref-ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022" role="doc-biblioref">2022</a>)</span>:</p>
@@ -169,16 +166,15 @@ div.csl-indent {
 </section>
 <section id="análisis-descriptivo" class="level2">
 <h2 class="anchored" data-anchor-id="análisis-descriptivo">Análisis descriptivo</h2>
-</section>
-<section id="cargar-paquetes" class="level2">
-<h2 class="anchored" data-anchor-id="cargar-paquetes">Cargar paquetes</h2>
+<section id="cargar-paquetes" class="level3">
+<h3 class="anchored" data-anchor-id="cargar-paquetes">Cargar paquetes</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               kableExtra, ggplot2, sjPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/qn/q6_1kmwd30519lg23mpn5db40000gn/T//Rtmp0EyScE/downloaded_packages</code></pre>
+    /var/folders/qn/q6_1kmwd30519lg23mpn5db40000gn/T//RtmpLpAN0d/downloaded_packages</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
@@ -190,14 +186,14 @@ summarytools</code></pre>
 </div>
 </div>
 </section>
-<section id="cargar-base-de-datos" class="level2">
-<h2 class="anchored" data-anchor-id="cargar-base-de-datos">Cargar base de datos</h2>
+<section id="cargar-base-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="cargar-base-de-datos">Cargar base de datos</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lapop_2023 <span class="ot">=</span> <span class="fu">read_dta</span>(<span class="st">"Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="selección-de-variables" class="level2">
-<h2 class="anchored" data-anchor-id="selección-de-variables">Selección de variables</h2>
+<section id="selección-de-variables" class="level3">
+<h3 class="anchored" data-anchor-id="selección-de-variables">Selección de variables</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> lapop_2023,<span class="st">"Confianza"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -216,8 +212,407 @@ summarytools</code></pre>
 12     56     b47a             Confianza en las elecciones
 13     74   anestg       Confianza en el gobierno nacional</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find_var</span>(<span class="at">data =</span> lapop_2023,<span class="st">"Religión"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  col.nr var.name var.label
+1    177     q3cn  Religión</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>proc_data <span class="ot">=</span> lapop_2023 <span class="sc">%&gt;%</span> <span class="fu">select</span>(b13, <span class="co">#confianza en el congreso</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                  b21, <span class="co">#confianza en los partidos políticos</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                  b21a, <span class="co">#confianza en el presidente</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                                  b31, <span class="co">#confaza en la corte suprema de justicia</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                                  b32, <span class="co">#confianza en su municipalidad</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                                  b6, <span class="co">#apoyo al sistema político</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                                  b2, <span class="co">#respeto a las instituciones políticas</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                                  q3cn, <span class="co">#religion</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                                  q1tc_r, <span class="co">#género</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="procesamiento-de-variables" class="level3">
+<h3 class="anchored" data-anchor-id="procesamiento-de-variables">Procesamiento de variables</h3>
+<p>este procesamiento de variables es una operacionalización de las variables para una mejor compresión de estas. Esto se traduce en un proceso que conlleva distintos pasos:</p>
+<ol type="1">
+<li><p>descriptivo general (para revisar la variable)</p></li>
+<li><p>Recodificación de la variable</p></li>
+<li><p>Etiquetado</p></li>
+<li><p>descriptivo final</p></li>
+</ol>
+<section id="variables-de-confianza" class="level4">
+<h4 class="anchored" data-anchor-id="variables-de-confianza">Variables de confianza</h4>
+<p>En esta encuesta las variables de confianza tienen un nivel de medición ordinal que considera los valores: 1 = nada; 7 = mucho</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>b13)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza en la legislatura (x) &lt;numeric&gt; 
+# total N=1653 valid N=1627 mean=2.96 sd=1.62
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 449 | 27.16 |   27.60 |  27.60
+    2 |     2 | 223 | 13.49 |   13.71 |  41.30
+    3 |     3 | 320 | 19.36 |   19.67 |  60.97
+    4 |     4 | 333 | 20.15 |   20.47 |  81.44
+    5 |     5 | 209 | 12.64 |   12.85 |  94.28
+    6 |     6 |  61 |  3.69 |    3.75 |  98.03
+    7 | Mucho |  32 |  1.94 |    1.97 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  26 |  1.57 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>b21)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza en los partidos políticos (x) &lt;numeric&gt; 
+# total N=1653 valid N=1622 mean=2.28 sd=1.48
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 751 | 45.43 |   46.30 |  46.30
+    2 |     2 | 245 | 14.82 |   15.10 |  61.41
+    3 |     3 | 254 | 15.37 |   15.66 |  77.07
+    4 |     4 | 212 | 12.83 |   13.07 |  90.14
+    5 |     5 | 118 |  7.14 |    7.27 |  97.41
+    6 |     6 |  32 |  1.94 |    1.97 |  99.38
+    7 | Mucho |  10 |  0.60 |    0.62 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  31 |  1.88 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>b21a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza en el presidente (x) &lt;numeric&gt; 
+# total N=1653 valid N=1634 mean=3.21 sd=1.96
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 531 | 32.12 |   32.50 |  32.50
+    2 |     2 | 144 |  8.71 |    8.81 |  41.31
+    3 |     3 | 230 | 13.91 |   14.08 |  55.39
+    4 |     4 | 261 | 15.79 |   15.97 |  71.36
+    5 |     5 | 218 | 13.19 |   13.34 |  84.70
+    6 |     6 | 155 |  9.38 |    9.49 |  94.19
+    7 | Mucho |  95 |  5.75 |    5.81 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  19 |  1.15 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>b31)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza en el tribunal supremo (x) &lt;numeric&gt; 
+# total N=1653 valid N=1619 mean=3.22 sd=1.64
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 361 | 21.84 |   22.30 |  22.30
+    2 |     2 | 208 | 12.58 |   12.85 |  35.15
+    3 |     3 | 323 | 19.54 |   19.95 |  55.10
+    4 |     4 | 344 | 20.81 |   21.25 |  76.34
+    5 |     5 | 247 | 14.94 |   15.26 |  91.60
+    6 |     6 | 102 |  6.17 |    6.30 |  97.90
+    7 | Mucho |  34 |  2.06 |    2.10 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  34 |  2.06 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>b32)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza en su municipalidad (x) &lt;numeric&gt; 
+# total N=1653 valid N=1626 mean=3.97 sd=1.69
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 209 | 12.64 |   12.85 |  12.85
+    2 |     2 | 119 |  7.20 |    7.32 |  20.17
+    3 |     3 | 249 | 15.06 |   15.31 |  35.49
+    4 |     4 | 378 | 22.87 |   23.25 |  58.73
+    5 |     5 | 376 | 22.75 |   23.12 |  81.86
+    6 |     6 | 196 | 11.86 |   12.05 |  93.91
+    7 | Mucho |  99 |  5.99 |    6.09 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  27 |  1.63 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>En este caso la variable no será recodificada porque no presenta problemas que compliquen el posterior analisis, por lo tanto se continúa con el etiquetado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>proc_data <span class="ot">=</span> proc_data <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"conf_congreso"</span><span class="ot">=</span>b13, <span class="st">"conf_partpol"</span><span class="ot">=</span>b21, <span class="st">"conf_presidente"</span><span class="ot">=</span>b21a, <span class="st">"conf_cortsup"</span><span class="ot">=</span>b31, <span class="st">"conf_mun"</span><span class="ot">=</span>b32)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Etiquetas de las variables</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>conf_congreso <span class="ot">=</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_data<span class="sc">$</span>conf_congreso,<span class="at">label =</span> <span class="st">"Confianza: congreso"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_data<span class="sc">$</span>conf_congreso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Confianza: congreso"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>conf_partpol <span class="ot">=</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_data<span class="sc">$</span>conf_partpol,<span class="at">label =</span> <span class="st">"Confianza: partidos políticos"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_data<span class="sc">$</span>conf_partpol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Confianza: partidos políticos"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>conf_presidente <span class="ot">=</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_data<span class="sc">$</span>conf_presidente,<span class="at">label =</span> <span class="st">"Confianza: Presidente"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_data<span class="sc">$</span>conf_presidente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Confianza: Presidente"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>conf_cortsup <span class="ot">=</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_data<span class="sc">$</span>conf_cortsup,<span class="at">label =</span> <span class="st">"Confianza: Corte Suprema"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_data<span class="sc">$</span>conf_cortsup)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Confianza: Corte Suprema"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>conf_mun <span class="ot">=</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_data<span class="sc">$</span>conf_mun,<span class="at">label =</span> <span class="st">"Confianza: municipalidad"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_data<span class="sc">$</span>conf_mun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Confianza: municipalidad"</code></pre>
+</div>
+</div>
+</section>
+<section id="revisión-de-los-cambios" class="level4">
+<h4 class="anchored" data-anchor-id="revisión-de-los-cambios">Revisión de los cambios</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>conf_congreso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza: congreso (x) &lt;numeric&gt; 
+# total N=1653 valid N=1627 mean=2.96 sd=1.62
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 449 | 27.16 |   27.60 |  27.60
+    2 |     2 | 223 | 13.49 |   13.71 |  41.30
+    3 |     3 | 320 | 19.36 |   19.67 |  60.97
+    4 |     4 | 333 | 20.15 |   20.47 |  81.44
+    5 |     5 | 209 | 12.64 |   12.85 |  94.28
+    6 |     6 |  61 |  3.69 |    3.75 |  98.03
+    7 | Mucho |  32 |  1.94 |    1.97 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  26 |  1.57 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>conf_partpol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza: partidos políticos (x) &lt;numeric&gt; 
+# total N=1653 valid N=1622 mean=2.28 sd=1.48
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 751 | 45.43 |   46.30 |  46.30
+    2 |     2 | 245 | 14.82 |   15.10 |  61.41
+    3 |     3 | 254 | 15.37 |   15.66 |  77.07
+    4 |     4 | 212 | 12.83 |   13.07 |  90.14
+    5 |     5 | 118 |  7.14 |    7.27 |  97.41
+    6 |     6 |  32 |  1.94 |    1.97 |  99.38
+    7 | Mucho |  10 |  0.60 |    0.62 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  31 |  1.88 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>conf_presidente)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza: Presidente (x) &lt;numeric&gt; 
+# total N=1653 valid N=1634 mean=3.21 sd=1.96
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 531 | 32.12 |   32.50 |  32.50
+    2 |     2 | 144 |  8.71 |    8.81 |  41.31
+    3 |     3 | 230 | 13.91 |   14.08 |  55.39
+    4 |     4 | 261 | 15.79 |   15.97 |  71.36
+    5 |     5 | 218 | 13.19 |   13.34 |  84.70
+    6 |     6 | 155 |  9.38 |    9.49 |  94.19
+    7 | Mucho |  95 |  5.75 |    5.81 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  19 |  1.15 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>conf_cortsup)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza: Corte Suprema (x) &lt;numeric&gt; 
+# total N=1653 valid N=1619 mean=3.22 sd=1.64
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 361 | 21.84 |   22.30 |  22.30
+    2 |     2 | 208 | 12.58 |   12.85 |  35.15
+    3 |     3 | 323 | 19.54 |   19.95 |  55.10
+    4 |     4 | 344 | 20.81 |   21.25 |  76.34
+    5 |     5 | 247 | 14.94 |   15.26 |  91.60
+    6 |     6 | 102 |  6.17 |    6.30 |  97.90
+    7 | Mucho |  34 |  2.06 |    2.10 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  34 |  2.06 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>conf_mun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confianza: municipalidad (x) &lt;numeric&gt; 
+# total N=1653 valid N=1626 mean=3.97 sd=1.69
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 209 | 12.64 |   12.85 |  12.85
+    2 |     2 | 119 |  7.20 |    7.32 |  20.17
+    3 |     3 | 249 | 15.06 |   15.31 |  35.49
+    4 |     4 | 378 | 22.87 |   23.25 |  58.73
+    5 |     5 | 376 | 22.75 |   23.12 |  81.86
+    6 |     6 | 196 | 11.86 |   12.05 |  93.91
+    7 | Mucho |  99 |  5.99 |    6.09 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  27 |  1.63 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="variables-respeto-y-apoyo-al-sistema-y-las-instituciones-políticas" class="level4">
+<h4 class="anchored" data-anchor-id="variables-respeto-y-apoyo-al-sistema-y-las-instituciones-políticas">Variables respeto y apoyo al sistema y las instituciones políticas</h4>
+<p>Estas variables presentan la misma clasificación que las anteriores. Los valores de la variable van de 1 a 7, donde 1 = nada; 7 = mucho</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>b2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Respeto a las institutiones políticas (x) &lt;numeric&gt; 
+# total N=1653 valid N=1626 mean=4.33 sd=1.89
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 191 | 11.55 |   11.75 |  11.75
+    2 |     2 | 113 |  6.84 |    6.95 |  18.70
+    3 |     3 | 210 | 12.70 |   12.92 |  31.61
+    4 |     4 | 319 | 19.30 |   19.62 |  51.23
+    5 |     5 | 318 | 19.24 |   19.56 |  70.79
+    6 |     6 | 197 | 11.92 |   12.12 |  82.90
+    7 | Mucho | 278 | 16.82 |   17.10 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  27 |  1.63 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>b6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Se debería apoyar al sistema político (x) &lt;numeric&gt; 
+# total N=1653 valid N=1606 mean=4.11 sd=1.81
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 223 | 13.49 |   13.89 |  13.89
+    2 |     2 | 105 |  6.35 |    6.54 |  20.42
+    3 |     3 | 213 | 12.89 |   13.26 |  33.69
+    4 |     4 | 324 | 19.60 |   20.17 |  53.86
+    5 |     5 | 378 | 22.87 |   23.54 |  77.40
+    6 |     6 | 196 | 11.86 |   12.20 |  89.60
+    7 | Mucho | 167 | 10.10 |   10.40 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  47 |  2.84 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>En este caso la variable no será recodificada porque no presenta problemas que compliquen el posterior analisis, por lo tanto se continúa con el etiquetado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>proc_data <span class="ot">=</span> proc_data <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"respeto_istpol"</span><span class="ot">=</span>b2, <span class="st">"apoyo_sistpol"</span><span class="ot">=</span>b6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Etiquetas de las variables</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>respeto_istpol <span class="ot">=</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_data<span class="sc">$</span>respeto_istpol,<span class="at">label =</span> <span class="st">"Respeto a las instituciones políticas"</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_data<span class="sc">$</span>respeto_istpol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Respeto a las instituciones políticas"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>apoyo_sistpol <span class="ot">=</span> <span class="fu">set_label</span>(<span class="at">x =</span> proc_data<span class="sc">$</span>apoyo_sistpol,<span class="at">label =</span> <span class="st">"Apoyo a las instituciones políticas"</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_label</span>(proc_data<span class="sc">$</span>apoyo_sistpol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Apoyo a las instituciones políticas"</code></pre>
+</div>
+</div>
+</section>
+<section id="revisión-de-los-cambios-1" class="level4">
+<h4 class="anchored" data-anchor-id="revisión-de-los-cambios-1">Revisión de los cambios</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>respeto_istpol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Respeto a las instituciones políticas (x) &lt;numeric&gt; 
+# total N=1653 valid N=1626 mean=4.33 sd=1.89
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 191 | 11.55 |   11.75 |  11.75
+    2 |     2 | 113 |  6.84 |    6.95 |  18.70
+    3 |     3 | 210 | 12.70 |   12.92 |  31.61
+    4 |     4 | 319 | 19.30 |   19.62 |  51.23
+    5 |     5 | 318 | 19.24 |   19.56 |  70.79
+    6 |     6 | 197 | 11.92 |   12.12 |  82.90
+    7 | Mucho | 278 | 16.82 |   17.10 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  27 |  1.63 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>apoyo_sistpol)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Apoyo a las instituciones políticas (x) &lt;numeric&gt; 
+# total N=1653 valid N=1606 mean=4.11 sd=1.81
+
+Value | Label |   N | Raw % | Valid % | Cum. %
+----------------------------------------------
+    1 |  Nada | 223 | 13.49 |   13.89 |  13.89
+    2 |     2 | 105 |  6.35 |    6.54 |  20.42
+    3 |     3 | 213 | 12.89 |   13.26 |  33.69
+    4 |     4 | 324 | 19.60 |   20.17 |  53.86
+    5 |     5 | 378 | 22.87 |   23.54 |  77.40
+    6 |     6 | 196 | 11.86 |   12.20 |  89.60
+    7 | Mucho | 167 | 10.10 |   10.40 | 100.00
+ &lt;NA&gt; |  &lt;NA&gt; |  47 |  2.84 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="variable-religión" class="level4">
+<h4 class="anchored" data-anchor-id="variable-religión">Variable religión</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>q3cn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Religión (x) &lt;numeric&gt; 
+# total N=1653 valid N=1602 mean=6.07 sd=13.91
+
+Value |                                                                  Label |   N | Raw % | Valid % | Cum. %
+---------------------------------------------------------------------------------------------------------------
+    1 |                                                               Católico | 636 | 38.48 |   39.70 |  39.70
+    2 |       Protestante, Protestante Tradicional o Protestante no Evangélico |  68 |  4.11 |    4.24 |  43.95
+    3 |                                    Religiones Orientales no Cristianas |   4 |  0.24 |    0.25 |  44.19
+    4 | Ninguna (Cree en un Ser Superior pero no pertenece a ninguna religión) | 484 | 29.28 |   30.21 |  74.41
+    5 |                                               Evangélica y Pentecostal | 195 | 11.80 |   12.17 |  86.58
+    7 |                                               Religiones Tradicionales |  25 |  1.51 |    1.56 |  88.14
+   11 |                                     Agnóstico o ateo (no cree en Dios) | 133 |  8.05 |    8.30 |  96.44
+   77 |                                                                   Otro |  57 |  3.45 |    3.56 | 100.00
+ &lt;NA&gt; |                                                                   &lt;NA&gt; |  51 |  3.09 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>Esta variable presenta muchas categorías distintas, esto con el objetivo de no perder información de parte de los encuestados, pero en cierto modo hace incomodo el análisis.</p>
+</section>
+</section>
+</section>
+<section id="continuar-el-punto" class="level2">
+<h2 class="anchored" data-anchor-id="continuar-el-punto">continuar el punto</h2>
+<section id="variable-de-género" class="level4">
+<h4 class="anchored" data-anchor-id="variable-de-género">Variable de género</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>q1tc_r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Género (x) &lt;numeric&gt; 
+# total N=1653 valid N=1644 mean=1.50 sd=0.50
+
+Value |                                      Label |   N | Raw % | Valid % | Cum. %
+-----------------------------------------------------------------------------------
+    1 |                           Hombre/masculino | 818 | 49.49 |   49.76 |  49.76
+    2 |                             Mujer/femenino | 825 | 49.91 |   50.18 |  99.94
+    3 | No se identifica como hombre ni como mujer |   1 |  0.06 |    0.06 | 100.00
+ &lt;NA&gt; |                                       &lt;NA&gt; |   9 |  0.54 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>Al revisar el descriptivo se presenta solo un caso que no se identifica ni como hombre ni como mujer, es por esta razón que al no representar una proporción considerable de casos se recodificará la variable para eliminar esta categoría. Además bajo las etiquetas de las categorías Hombre/masculino y Mujer/femenino, se opta por la denominación binaria entre hombre y mujer porque la pregunta está construída de manera en que esa es la categoría de respuesta que aparece primero en lugar de masculino/femenino, sin embargo apuntan a lo mismo. También se cambian los valores que representan cada categoría de esta manera: 0 = Hombre; 1 = Mujer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>q1tc_r <span class="ot">=</span> <span class="fu">recode</span>(proc_data<span class="sc">$</span>q1tc_r, <span class="st">"c(3)=NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>proc_data <span class="ot">=</span> proc_data <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="st">"genero"</span><span class="ot">=</span>q1tc_r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>genero <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(proc_data<span class="sc">$</span>genero, <span class="st">"1=0;2=1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Etiquetas de la variable</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>proc_data<span class="sc">$</span>genero <span class="ot">&lt;-</span> <span class="fu">factor</span>(proc_data<span class="sc">$</span>genero,</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels=</span><span class="fu">c</span>( <span class="st">"Hombre"</span>,</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Mujer"</span>),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="revisión-de-los-cambios-2" class="level4">
+<h4 class="anchored" data-anchor-id="revisión-de-los-cambios-2">Revisión de los cambios</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">frq</span>(proc_data<span class="sc">$</span>genero)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x &lt;categorical&gt; 
+# total N=1653 valid N=1643 mean=1.50 sd=0.50
+
+Value  |   N | Raw % | Valid % | Cum. %
+---------------------------------------
+Hombre | 818 | 49.49 |   49.79 |  49.79
+Mujer  | 825 | 49.91 |   50.21 | 100.00
+&lt;NA&gt;   |  10 |  0.60 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
+</div>
 </div>
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">

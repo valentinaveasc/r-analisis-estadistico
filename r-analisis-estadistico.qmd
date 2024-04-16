@@ -8,8 +8,6 @@ link-citations: true
 justify: true
 ---
 
-## Religión en Chile y la confianza en el sistema político
-
 ## Introducción
 
 En el marco de los problemas que presenta el sistema político chileno, distintos estudios han explorado factores que influyen en el buen funcionamiento de las instituciones democráticas. En ese contexto, como señalan @ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022:
@@ -30,23 +28,170 @@ Considerando lo anteriormente expuesto, se propone como objeto central de esta i
 
 ## Análisis descriptivo
 
-## Cargar paquetes
+### Cargar paquetes
 
 ```{r}
 pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,
                kableExtra, ggplot2, sjPlot)
 ```
 
-## Cargar base de datos
+### Cargar base de datos
 
 ```{r}
 lapop_2023 = read_dta("Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta")
 
 ```
 
-## Selección de variables
+### Selección de variables
 
 ```{r}
 find_var(data = lapop_2023,"Confianza")
+find_var(data = lapop_2023,"Religión")
+```
 
+```{r}
+proc_data = lapop_2023 %>% select(b13, #confianza en el congreso
+                                  b21, #confianza en los partidos políticos
+                                  b21a, #confianza en el presidente
+                                  b31, #confaza en la corte suprema de justicia
+                                  b32, #confianza en su municipalidad
+                                  b6, #apoyo al sistema político
+                                  b2, #respeto a las instituciones políticas
+                                  q3cn, #religion
+                                  q1tc_r, #género
+                                  )
+
+```
+
+### Procesamiento de variables
+
+este procesamiento de variables es una operacionalización de las variables para una mejor compresión de estas. Esto se traduce en un proceso que conlleva distintos pasos:
+
+1.  descriptivo general (para revisar la variable)
+
+2.  Recodificación de la variable
+
+3.  Etiquetado
+
+4.  descriptivo final
+
+#### Variables de confianza
+
+En esta encuesta las variables de confianza tienen un nivel de medición ordinal que considera los valores: 1 = nada; 7 = mucho
+
+```{r}
+frq(proc_data$b13)
+frq(proc_data$b21)
+frq(proc_data$b21a)
+frq(proc_data$b31)
+frq(proc_data$b32)
+```
+
+En este caso la variable no será recodificada porque no presenta problemas que compliquen el posterior analisis, por lo tanto se continúa con el etiquetado.
+
+```{r}
+proc_data = proc_data %>% rename("conf_congreso"=b13, "conf_partpol"=b21, "conf_presidente"=b21a, "conf_cortsup"=b31, "conf_mun"=b32)
+```
+
+```{r}
+#Etiquetas de las variables
+proc_data$conf_congreso = set_label(x = proc_data$conf_congreso,label = "Confianza: congreso")
+get_label(proc_data$conf_congreso)
+
+proc_data$conf_partpol = set_label(x = proc_data$conf_partpol,label = "Confianza: partidos políticos")
+get_label(proc_data$conf_partpol)
+
+proc_data$conf_presidente = set_label(x = proc_data$conf_presidente,label = "Confianza: Presidente")
+get_label(proc_data$conf_presidente)
+
+proc_data$conf_cortsup = set_label(x = proc_data$conf_cortsup,label = "Confianza: Corte Suprema")
+get_label(proc_data$conf_cortsup)
+
+proc_data$conf_mun = set_label(x = proc_data$conf_mun,label = "Confianza: municipalidad")
+get_label(proc_data$conf_mun)
+```
+
+#### Revisión de los cambios
+
+```{r}
+frq(proc_data$conf_congreso)
+frq(proc_data$conf_partpol)
+frq(proc_data$conf_presidente)
+frq(proc_data$conf_cortsup)
+frq(proc_data$conf_mun)
+```
+
+#### Variables respeto y apoyo al sistema y las instituciones políticas
+
+Estas variables presentan la misma clasificación que las anteriores. Los valores de la variable van de 1 a 7, donde 1 = nada; 7 = mucho
+
+```{r}
+frq(proc_data$b2)
+frq(proc_data$b6)
+```
+
+En este caso la variable no será recodificada porque no presenta problemas que compliquen el posterior analisis, por lo tanto se continúa con el etiquetado.
+
+```{r}
+proc_data = proc_data %>% rename("respeto_istpol"=b2, "apoyo_sistpol"=b6)
+```
+
+```{r}
+#Etiquetas de las variables
+proc_data$respeto_istpol = set_label(x = proc_data$respeto_istpol,label = "Respeto a las instituciones políticas")
+get_label(proc_data$respeto_istpol)
+
+proc_data$apoyo_sistpol = set_label(x = proc_data$apoyo_sistpol,label = "Apoyo a las instituciones políticas")
+get_label(proc_data$apoyo_sistpol)
+```
+
+#### Revisión de los cambios
+
+```{r}
+frq(proc_data$respeto_istpol)
+frq(proc_data$apoyo_sistpol)
+```
+
+#### Variable religión
+
+```{r}
+frq(proc_data$q3cn)
+```
+
+Esta variable presenta muchas categorías distintas, esto con el objetivo de no perder información de parte de los encuestados, pero en cierto modo hace incomodo el análisis.
+
+## continuar el punto
+
+#### Variable de género
+
+```{r}
+frq(proc_data$q1tc_r)
+```
+
+Al revisar el descriptivo se presenta solo un caso que no se identifica ni como hombre ni como mujer, es por esta razón que al no representar una proporción considerable de casos se recodificará la variable para eliminar esta categoría. Además bajo las etiquetas de las categorías Hombre/masculino y Mujer/femenino, se opta por la denominación binaria entre hombre y mujer porque la pregunta está construída de manera en que esa es la categoría de respuesta que aparece primero en lugar de masculino/femenino, sin embargo apuntan a lo mismo. También se cambian los valores que representan cada categoría de esta manera: 0 = Hombre; 1 = Mujer.
+
+```{r}
+proc_data$q1tc_r = recode(proc_data$q1tc_r, "c(3)=NA")
+```
+
+```{r}
+proc_data = proc_data %>% rename("genero"=q1tc_r)
+```
+
+```{r}
+proc_data$genero <- car::recode(proc_data$genero, "1=0;2=1")
+```
+
+```{r}
+#Etiquetas de la variable
+proc_data$genero <- factor(proc_data$genero,
+            labels=c( "Hombre",
+                      "Mujer"),
+            levels=c(0,1))
+```
+
+#### Revisión de los cambios
+
+```{r}
+frq(proc_data$genero)
 ```
