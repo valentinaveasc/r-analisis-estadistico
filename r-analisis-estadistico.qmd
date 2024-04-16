@@ -154,9 +154,7 @@ frq(proc_data$apoyo_sistpol)
 
 #### Variable religión
 
-```{r}
-frq(proc_data$q3cn)
-```
+frq(proc_data\$q3cn)
 
 Esta variable presenta muchas categorías distintas, esto con el objetivo de no perder información de parte de los encuestados, pero en cierto modo hace incomodo el análisis.
 
@@ -186,12 +184,5 @@ proc_data$genero <- car::recode(proc_data$genero, "1=0;2=1")
 #Etiquetas de la variable
 proc_data$genero <- factor(proc_data$genero,
             labels=c( "Hombre",
-                      "Mujer"),
-            levels=c(0,1))
-```
-
-#### Revisión de los cambios
-
-```{r}
-frq(proc_data$genero)
+                      
 ```
