@@ -8,7 +8,7 @@ pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,
                kableExtra, ggplot2, sjPlot, tidyverse)
 
 ## Cargar base de datos
-lapop_2023 = read_dta("~/r-analisis-estadistico-main/Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta")
+lapop_2023 = read_dta("~/Downloads/r-analisis-estadistico/r-analisis-estadistico/Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta")
 
 ## selección de variables ----
 find_var(data = lapop_2023,"Confianza")
@@ -56,7 +56,6 @@ proc_data = proc_data %>% rename("conf_congreso"=b13, "conf_partpol"=b21, "conf_
 #Etiquetas de las variables
 proc_data$conf_congreso = set_label(x = proc_data$conf_congreso,label = "Confianza: congreso")
 get_label(proc_data$conf_congreso)
-
 proc_data$conf_partpol = set_label(x = proc_data$conf_partpol,label = "Confianza: partidos políticos")
 get_label(proc_data$conf_partpol)
 
@@ -73,8 +72,8 @@ get_label(proc_data$conf_mun)
 proc_data$conf_inst <- (proc_data$conf_congreso+proc_data$conf_partpol+proc_data$conf_presidente+proc_data$conf_cortsup+proc_data$conf_mun)
 summary(proc_data$conf_inst)
 frq(proc_data$conf_inst)
-#recodificación de esta variable
 #para este caso consideraremos como nada de confianza en las instituciones
+#recodificación de esta variable
 
 proc_data$conf_inst = recode(proc_data$conf_inst, "5=5; 6=5; 7=5; 8=5; 9=5; 10=5;
                                 11=11; 12=11; 13=11; 14=11; 15=11; 16=11;
@@ -88,9 +87,13 @@ proc_data$conf_inst = set_labels(proc_data$conf_inst, labels=c("nada de confianz
                                           "mucha confianza"=23,
                                           "absoluta confianza"=30))
 
+proc_data$conf_inst <- factor(proc_data$conf_inst,
+                             labels = c("nada de confianza", "poca confianza", "algo de confianza",
+                                        "mucha confianza", "absoluta confianza"),
+                             levels = c(5, 11, 17, 23, 30))
+
 #Etiquetas
 proc_data$conf_inst  <- set_label(x = proc_data$conf_inst, label = "confianza en instituciones")
-sjt.itemanalysis()
 
 ##Revisión de los cambios
 
@@ -99,7 +102,7 @@ frq(proc_data$conf_partpol)
 frq(proc_data$conf_presidente)
 frq(proc_data$conf_cortsup)
 frq(proc_data$conf_mun)
-
+frq(proc_data$conf_inst)
 ##Variables respeto y apoyo al sistema y las instituciones políticas ----
 #Estas variables presentan la misma clasificación que las anteriores.
 #Los valores de la variable van de 1 a 7, donde 1 = nada; 7 = mucho
@@ -132,7 +135,9 @@ proc_data$religion = set_labels(proc_data$religion, labels=c("religión cristian
                                                                "creyente no religioso"=4,
                                                                "religión no cristiana"=7,
                                                                "no creyente"=11))
-
+proc_data$religion <- factor(proc_data$religion,
+                             labels = c("religión cristiana", "creyente no religioso", "religión no cristiana", "no creyente"),
+                             levels = c(1, 4, 7, 11))
 frq(proc_data$religion)
 
 ##Variable de género ----
@@ -159,16 +164,12 @@ proc_data$genero <- factor(proc_data$genero,
 frq(proc_data$genero)
 
 
-
-
-
-
 ## Base de datos procesada para el analisis
 
 proc_data <-as.data.frame(proc_data)
 stargazer(proc_data, type="text")
 
-save(proc_data, file = "C:/Users/Alumno/Documents/r-analisis-estadistico-main/Input/lapop_2023_proc.RData")
+save(proc_data, file = "~/Downloads/r-analisis-estadistico/r-analisis-estadistico/Input/lapop_2023_proc.RData")
 
 ##Gráficos y tablas
 #librerias para tablas y gráficos
@@ -183,9 +184,30 @@ pacman::p_load(sjlabelled,
                sessioninfo, # Información de la sesión de trabajo
                ggplot2) # Para la mayoría de los gráficos
 
+## Tabla descriptiva ----
+sjmisc::descr(proc_data, show = c("label","range", "mean", "sd", "NA.prc", "n"))%>% kable(.,"markdown")
 
-sjmisc::descr(proc_data,
-              show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
-  kable(.,"markdown")
+#respaldo base de datos
+proc_data_original <-proc_data
+dim(proc_data)
+sum(is.na(proc_data))
+proc_data <-na.omit(proc_data)
+dim(proc_data)
+sjt.xtab(proc_data$religion, proc_data$conf_inst, encoding = "UTF-8")
+    
+graph2 <- sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
+                                              conf_partpol,
+                                              conf_presidente,
+                                              conf_cortsup),
+                                title = "Confianza en instituciones políticas") +
+  theme(legend.position="bottom")
+graph2
 
+
+    graph3 <- proc_data %>% ggplot(aes(x = conf_inst, fill = religion)) + 
+  geom_bar() +
+  xlab("Confianza en instituciones") +
+  ylab("Cantidad") + 
+  labs(fill="religion")+
+  scale_fill_discrete(labels = c('cristiana','creyente no religioso','religion no cristiana','no creyente'))
 
