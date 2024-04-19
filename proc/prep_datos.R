@@ -191,23 +191,35 @@ sjmisc::descr(proc_data, show = c("label","range", "mean", "sd", "NA.prc", "n"))
 proc_data_original <-proc_data
 dim(proc_data)
 sum(is.na(proc_data))
-proc_data <-na.omit(proc_data)
+#Eliminar NA
+proc_data =na.omit(proc_data)
 dim(proc_data)
-sjt.xtab(proc_data$religion, proc_data$conf_inst, encoding = "UTF-8")
-    
-graph2 <- sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
-                                              conf_partpol,
-                                              conf_presidente,
-                                              conf_cortsup),
-                                title = "Confianza en instituciones políticas") +
+
+#Gráficos ----
+grafico1 = sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
+                                                conf_partpol,
+                                                conf_presidente,
+                                                conf_cortsup),
+                                  title = "Confianza en instituciones políticas") +
   theme(legend.position="bottom")
-graph2
+grafico1
 
+frq(proc_data$religion)
+grafico2 <- sjPlot::plot_stackfrq(dplyr::select(proc_data, religion),
+                                  title = "religiones") +
+  theme(legend.position="bottom")
 
-    graph3 <- proc_data %>% ggplot(aes(x = conf_inst, fill = religion)) + 
+grafico2
+
+colores_personalizados = c("#16A085", "#1ABC9C", "#76D7C4", "#A3E4D7")
+
+grafico3 = proc_data %>%
+  ggplot(aes(x = conf_inst, fill = religion)) + 
   geom_bar() +
   xlab("Confianza en instituciones") +
   ylab("Cantidad") + 
-  labs(fill="religion")+
-  scale_fill_discrete(labels = c('cristiana','creyente no religioso','religion no cristiana','no creyente'))
+  labs(fill = "Religión") +
+  scale_fill_manual(labels = c('Cristiana', 'Creyente no religioso', 'Religión no cristiana', 'No creyente'),
+                    values = colores_personalizados)
 
+grafico3

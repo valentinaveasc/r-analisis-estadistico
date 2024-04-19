@@ -28,6 +28,8 @@ Considerando lo anteriormente expuesto, se propone como objeto central de esta i
 
 ## Análisis descriptivo
 
+A continuación se presentan tablas y gráficos con información descriptiva de las variables seleccionadas para la investigación, estas figuras contienen información univariada.
+
 ```{r}
 #| warning: false
 #| echo: false
@@ -40,6 +42,8 @@ pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,
 #| echo: false
 lapop_2023 = read_dta("~/Downloads/r-analisis-estadistico/r-analisis-estadistico/Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta")
 ```
+
+### Tablas descriptivas generales
 
 ```{r}
 #| warning: false
@@ -171,6 +175,39 @@ pacman::p_load(sjlabelled,
 sjmisc::descr(proc_data, show = c("label","range", "mean", "sd", "NA.prc", "n"))%>% kable(.,"markdown")
 ```
 
-```{r}
+### Gráfico "confianza en instituciones políticas"
 
+```{r}
+#| warning: false
+#| echo: false
+grafico1 = sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
+                                                conf_partpol,
+                                                conf_presidente,
+                                                conf_cortsup),
+                                  title = "Confianza en instituciones políticas") +
+  theme(legend.position="bottom")
+grafico1
 ```
+
+En base a esta primera tabla y gráfico se puede indicar que en primer lugar sobre las variables de confianza en las distintas instituciones del sistema político, si se considera la escala de estas variables donde 1 significa nada de confianza y 7 mucha confianza, se puede observar en base a los promedios de estas variables que la confianza en las instituciones en general no es alta.
+
+De manera específica se observa que instituciones como los partidos políticos y el congreso son las que presentan niveles de confianza más bajos, con una media de 2,28 y 2,96 respectivamente. Siguiendo con esto tambien se identifica que en este panorama de poca confianza hacia las instituciones, los municipios son quienes se ven mejor evaluados por parte de los ciudadanos, presentando una media de 3,96 lo que puede indicar una confianza menos degradada en comparación al resto de organismos del sistema politico.
+
+Por otro lado respecto al apoyo y respeto al sistema político chileno, en base a las medias de estas variables que presentan valores de 4,11 y 4,33 respectivamente, se puede indicar que presentan valores más altos en comparación a las variables de confianza, pero no son diferencias totalmente distantes. Pese a esto, a modo de interpretación se puede señalar que si bien la confianza hacia las distintas instituciones politicas se ve afectada, esto no ha significado que la ciudadanía no respete el sistema político actual del país, sin embargo esto no niega que pueda existir un descontento con este que se ve expresado fundamentalmente en una baja confianza hacia las instituciones políticas.
+
+### Gráfico y tabla sobre religiones
+
+```{r}
+#| warning: false
+#| echo: false
+frq(proc_data$religion)
+grafico2 <- sjPlot::plot_stackfrq(dplyr::select(proc_data, religion),
+                                  title = "religiones") +
+  theme(legend.position="bottom")
+
+grafico2
+```
+
+Observando la anterior tabla y gráfico se puede señalar que hay una presencia considerable de personas que se indetifican con una religión, de esta manera la mayoría se categoriza en una religión cristiana, conformando el56,1% de la muestra (817 casos). Siguiendo con esto quienes son creyentes pero no se identifican con ninguna religión representan la segunda mayoría, con un total de 459 casos representan el 31% del total, de esta manera quienes se identifican con una religión no cristiana y quienes no son creyentes representan una minoría, haciendo en conjunto un total de 201 casos, valor que no supera a ninguna de las categorias anteriores.
+
+Atendiendo a este primer análisis que se centra en la descripción de las variables de manera individual, el siguiente paso constituye un análisis que se centre en la asociación de las variables, centrado en la hipotesis central de esta investigación.
