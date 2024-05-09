@@ -210,4 +210,35 @@ grafico2
 
 Observando la anterior tabla y gráfico se puede señalar que hay una presencia considerable de personas que se indetifican con una religión, de esta manera la mayoría se categoriza en una religión cristiana, conformando el56,1% de la muestra (817 casos). Siguiendo con esto quienes son creyentes pero no se identifican con ninguna religión representan la segunda mayoría, con un total de 459 casos representan el 31% del total, de esta manera quienes se identifican con una religión no cristiana y quienes no son creyentes representan una minoría, haciendo en conjunto un total de 201 casos, valor que no supera a ninguna de las categorias anteriores.
 
-Atendiendo a este primer análisis que se centra en la descripción de las variables de manera individual, el siguiente paso constituye un análisis que se centre en la asociación de las variables, centrado en la hipotesis central de esta investigación.
+Atendiendo a este primer análisis que se centra en la descripción de las variables de manera individual, el siguiente paso constituye un análisis sobre la asociación entre las variables, enfocado en la hipotesis central de esta investigación.
+
+## Asociación de variables
+
+En la siguiente tabla permite ver a modo general la asociación de las variables trabajadas mostrando una matriz de correlación, que indica la dirección y fuerza de la asociación
+
+```{r}
+#| warning: false
+#| echo: false
+proc_data2 = proc_data %>% mutate_all(~(as.numeric(.)))
+
+#Reescribir las etiquetas de las variables para obtener la tabla con correlaciones
+
+proc_data2$conf_congreso = set_label(x = proc_data2$conf_congreso,label = "Confianza: congreso")
+proc_data2$conf_partpol = set_label(x = proc_data2$conf_partpol,label = "Confianza: partidos políticos")
+proc_data2$conf_presidente = set_label(x = proc_data2$conf_presidente,label = "Confianza: Presidente")
+proc_data2$conf_cortsup = set_label(x = proc_data2$conf_cortsup,label = "Confianza: Corte Suprema")
+proc_data2$conf_mun = set_label(x = proc_data2$conf_mun,label = "Confianza: municipalidad")
+proc_data2$respeto_istpol = set_label(x = proc_data2$respeto_istpol,label = "Respeto a las instituciones políticas")
+proc_data2$apoyo_sistpol = set_label(x = proc_data2$apoyo_sistpol,label = "Apoyo a las instituciones políticas")
+proc_data2$religion = set_label(x = proc_data2$religion,label = "Religión")
+proc_data2$genero = set_label(x = proc_data2$genero,label = "Genero")
+
+sjPlot::tab_corr(proc_data2, 
+                 triangle = "lower")
+```
+
+Con esta primera revisión se puede identificar, bajo los criterios que establece Cohen (1998), que de manera general se presenta una asociación moderada entre las variables. Los coeficientes de correlación de Pearson evidencian una asociación positiva y moderada entre las variables de confianza, respeto y apoyo a las instituciones políticas.
+
+Considerando la información de la tabla, se prosigue con la construcción de dos indices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas. Basándonos en el enfoque tomado por @ignacioirarrázaval2023 sobre la clasificación de variables de confianza, en donde se establece la construcción de indices de tipo promedio simple, de esta manera se procede a desarrollar dos indices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas.
+
+Cabe mencionar que este primer análisis no se consideran relevantes los coeficientes que muestran la relación de la variable "religión" con las demás que se han trabajado, esto porque se trata de una variable nominal. Para poder visualizar la asociación de el resto de variables con la religión se opta por una tabla de contingencia que se expone más adelante.

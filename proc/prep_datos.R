@@ -68,33 +68,6 @@ get_label(proc_data$conf_cortsup)
 proc_data$conf_mun = set_label(x = proc_data$conf_mun,label = "Confianza: municipalidad")
 get_label(proc_data$conf_mun)
 
-##Indice sumativo de confianza total en instituciones
-proc_data$conf_inst <- (proc_data$conf_congreso+proc_data$conf_partpol+proc_data$conf_presidente+proc_data$conf_cortsup+proc_data$conf_mun)
-summary(proc_data$conf_inst)
-frq(proc_data$conf_inst)
-#para este caso consideraremos como nada de confianza en las instituciones
-#recodificación de esta variable
-
-proc_data$conf_inst = recode(proc_data$conf_inst, "5=5; 6=5; 7=5; 8=5; 9=5; 10=5;
-                                11=11; 12=11; 13=11; 14=11; 15=11; 16=11;
-                                17=17; 18=17; 19=17; 20=17; 21=17; 22=17;
-                                23=23; 24=23; 25=23; 26=23; 27=23; 28=23; 29=23;
-                                30=30; 31=30; 32=30; 33=30; 34=30; 35=30")
-
-proc_data$conf_inst = set_labels(proc_data$conf_inst, labels=c("nada de confianza"=5,
-                                          "poca confianza"=11,
-                                          "algo de confianza"=17,
-                                          "mucha confianza"=23,
-                                          "absoluta confianza"=30))
-
-proc_data$conf_inst <- factor(proc_data$conf_inst,
-                             labels = c("nada de confianza", "poca confianza", "algo de confianza",
-                                        "mucha confianza", "absoluta confianza"),
-                             levels = c(5, 11, 17, 23, 30))
-
-#Etiquetas
-proc_data$conf_inst  <- set_label(x = proc_data$conf_inst, label = "confianza en instituciones")
-
 ##Revisión de los cambios
 
 frq(proc_data$conf_congreso)
@@ -102,7 +75,7 @@ frq(proc_data$conf_partpol)
 frq(proc_data$conf_presidente)
 frq(proc_data$conf_cortsup)
 frq(proc_data$conf_mun)
-frq(proc_data$conf_inst)
+
 ##Variables respeto y apoyo al sistema y las instituciones políticas ----
 #Estas variables presentan la misma clasificación que las anteriores.
 #Los valores de la variable van de 1 a 7, donde 1 = nada; 7 = mucho
@@ -213,13 +186,36 @@ grafico2
 
 colores_personalizados = c("#16A085", "#1ABC9C", "#76D7C4", "#A3E4D7")
 
-grafico3 = proc_data %>%
-  ggplot(aes(x = conf_inst, fill = religion)) + 
-  geom_bar() +
-  xlab("Confianza en instituciones") +
-  ylab("Cantidad") + 
-  labs(fill = "Religión") +
-  scale_fill_manual(labels = c('Cristiana', 'Creyente no religioso', 'Religión no cristiana', 'No creyente'),
-                    values = colores_personalizados)
 
-grafico3
+##Asociación de variables ----
+
+proc_data2 = proc_data %>% mutate_all(~(as.numeric(.)))
+
+cor(proc_data2, use = "complete.obs")
+
+#Reescribir las etiquetas de las variables para obtener la tabla con correlaciones
+
+proc_data2$conf_congreso = set_label(x = proc_data2$conf_congreso,label = "Confianza: congreso")
+proc_data2$conf_partpol = set_label(x = proc_data2$conf_partpol,label = "Confianza: partidos políticos")
+proc_data2$conf_presidente = set_label(x = proc_data2$conf_presidente,label = "Confianza: Presidente")
+proc_data2$conf_cortsup = set_label(x = proc_data2$conf_cortsup,label = "Confianza: Corte Suprema")
+proc_data2$conf_mun = set_label(x = proc_data2$conf_mun,label = "Confianza: municipalidad")
+proc_data2$respeto_istpol = set_label(x = proc_data2$respeto_istpol,label = "Respeto a las instituciones políticas")
+proc_data2$apoyo_sistpol = set_label(x = proc_data2$apoyo_sistpol,label = "Apoyo a las instituciones políticas")
+proc_data2$religion = set_label(x = proc_data2$religion,label = "Religión")
+proc_data2$genero = set_label(x = proc_data2$genero,label = "Genero")
+
+#Tabla de correlaciones
+sjPlot::tab_corr(proc_data2, 
+                 triangle = "lower")
+
+##Construcción de indices ----
+#Indice de confianza
+proc_data = proc_data %>% mutate(indice_confianza = rowMeans(proc_data %>% select(conf_congreso, conf_partpol,
+                                                                                  conf_presidente, conf_cortsup,
+                                                                                  conf_mun), na.rm=T))
+#indice de disposición a las instituciones políticas
+proc_data = proc_data %>% mutate(indice_disp_inst = rowMeans(proc_data %>% select(apoyo_sistpol, respeto_istpol), na.rm=T))
+
+
+

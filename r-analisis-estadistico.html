@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,14 +18,16 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -39,8 +41,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="r-analisis-estadistico_files/libs/clipboard/clipboard.min.js"></script>
@@ -84,7 +85,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
@@ -104,16 +107,6 @@ div.csl-indent {
 <section id="análisis-descriptivo" class="level2">
 <h2 class="anchored" data-anchor-id="análisis-descriptivo">Análisis descriptivo</h2>
 <p>A continuación se presentan tablas y gráficos con información descriptiva de las variables seleccionadas para la investigación, estas figuras contienen información univariada.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/qn/q6_1kmwd30519lg23mpn5db40000gn/T//RtmpudtIPf/downloaded_packages</code></pre>
-</div>
-</div>
-<div class="cell">
-
-</div>
 <section id="tablas-descriptivas-generales" class="level3">
 <h3 class="anchored" data-anchor-id="tablas-descriptivas-generales">Tablas descriptivas generales</h3>
 <div class="cell">
@@ -131,13 +124,8 @@ apoyo_sistpol   1,606 4.111  1.815    1   7
 respeto_istpol  1,626 4.330  1.891    1   7 
 --------------------------------------------</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-The downloaded binary packages are in
-    /var/folders/qn/q6_1kmwd30519lg23mpn5db40000gn/T//RtmpudtIPf/downloaded_packages</code></pre>
-</div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 3%">
 <col style="width: 16%">
@@ -270,12 +258,16 @@ The downloaded binary packages are in
 <h3 class="anchored" data-anchor-id="gráfico-confianza-en-instituciones-políticas">Gráfico “confianza en instituciones políticas”</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En base a esta primera tabla y gráfico se puede indicar que en primer lugar sobre las variables de confianza en las distintas instituciones del sistema político, si se considera la escala de estas variables donde 1 significa nada de confianza y 7 mucha confianza, se puede observar en base a los promedios de estas variables que la confianza en las instituciones en general no es alta.</p>
 <p>De manera específica se observa que instituciones como los partidos políticos y el congreso son las que presentan niveles de confianza más bajos, con una media de 2,28 y 2,96 respectivamente. Siguiendo con esto tambien se identifica que en este panorama de poca confianza hacia las instituciones, los municipios son quienes se ven mejor evaluados por parte de los ciudadanos, presentando una media de 3,96 lo que puede indicar una confianza menos degradada en comparación al resto de organismos del sistema politico.</p>
-<p>Por otro lado respecto al apoyo y respeto al sistema político chileno, en base a las medias de estas variables que presentan valores de 4,11 y 4,33 respectivamente, se puede indicar que presentan valores más altos en comparación a las variables de confianza, pero no son diferencias totalmente distantes. Pese a esto a modo de interpretación se puede señalar que si bien la confianza hacia las distintas instituciones politicas se ve afectada, esto no ha significado que la ciudadanía no respete el sistema político actual del país, sin embargo esto no niega que pueda existir un descontento con este que se ve expresado fundamentalmente en una baja confianza hacia las instituciones políticas.</p>
+<p>Por otro lado respecto al apoyo y respeto al sistema político chileno, en base a las medias de estas variables que presentan valores de 4,11 y 4,33 respectivamente, se puede indicar que presentan valores más altos en comparación a las variables de confianza, pero no son diferencias totalmente distantes. Pese a esto, a modo de interpretación se puede señalar que si bien la confianza hacia las distintas instituciones politicas se ve afectada, esto no ha significado que la ciudadanía no respete el sistema político actual del país, sin embargo esto no niega que pueda existir un descontento con este que se ve expresado fundamentalmente en una baja confianza hacia las instituciones políticas.</p>
 </section>
 <section id="gráfico-y-tabla-sobre-religiones" class="level3">
 <h3 class="anchored" data-anchor-id="gráfico-y-tabla-sobre-religiones">Gráfico y tabla sobre religiones</h3>
@@ -293,35 +285,205 @@ no creyente           | 133 |  8.05 |    8.30 | 100.00
 &lt;NA&gt;                  |  51 |  3.09 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Observando la anterior tabla y gráfico se puede señalar que hay una presencia considerable de personas que se indetifican con una religión, de esta manera la mayoría se categoriza en una religión cristiana, conformando el56,1% de la muestra (817 casos). Siguiendo con esto quienes son creyentes pero no se identifican con ninguna religión representan la segunda mayoría, con un total de 459 casos representan el 31% del total, de esta manera quienes se identifican con una religión no cristiana y quienes no son creyentes representan una minoría, haciendo en conjunto un total de 201 casos, valor que no supera a ninguna de las categorias anteriores.</p>
-<p>Atendiendo a este primer análisis que se centra en la descripción de las variables de manera individual, el siguiente paso constituye un análisis que se centre en la asociación de las variables, centrado en la hipotesis central de esta investigación.</p>
-
+<p>Atendiendo a este primer análisis que se centra en la descripción de las variables de manera individual, el siguiente paso constituye un análisis sobre la asociación entre las variables, enfocado en la hipotesis central de esta investigación.</p>
 </section>
 </section>
+<section id="asociación-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="asociación-de-variables">Asociación de variables</h2>
+<p>En la siguiente tabla permite ver a modo general la asociación de las variables trabajadas mostrando una matriz de correlación, que indica la dirección y fuerza de la asociación</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">&nbsp;</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Confianza: congreso</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Confianza: partidos políticos</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Confianza: Presidente</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Confianza: Corte Suprema</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Confianza: municipalidad</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Apoyo a las instituciones políticas</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Respeto a las instituciones políticas</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Religión</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">Genero</td>
+<td data-quarto-table-cell-role="th" style="font-style: italic; font-weight: normal; border-top: double black; border-bottom: 1px solid black; padding: 0.2cm">conf_inst</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Confianza: congreso</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Confianza: partidos políticos</td>
+<td style="text-align: center; padding: 0.2cm;">0.580<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Confianza: Presidente</td>
+<td style="text-align: center; padding: 0.2cm;">0.345<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.392<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Confianza: Corte Suprema</td>
+<td style="text-align: center; padding: 0.2cm;">0.589<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.527<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.521<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Confianza: municipalidad</td>
+<td style="text-align: center; padding: 0.2cm;">0.409<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.341<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.382<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.476<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Apoyo a las instituciones políticas</td>
+<td style="text-align: center; padding: 0.2cm;">0.435<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.398<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.437<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.468<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.340<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Respeto a las instituciones políticas</td>
+<td style="text-align: center; padding: 0.2cm;">0.389<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.356<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.296<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.416<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.279<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.448<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">Religión</td>
+<td style="text-align: center; padding: 0.2cm;">-0.073<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.034<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.061<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.038<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">-0.100<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.044<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">-0.080<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td style="font-style: italic">Genero</td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.028<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.001<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.050<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.018<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.032<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.035<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">0.062<span style="vertical-align:super;font-size:0.8em;">*</span></td>
+<td style="text-align: center; padding: 0.2cm;">-0.076<span style="vertical-align:super;font-size:0.8em;">**</span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="odd">
+<td style="font-style: italic">conf_inst</td>
+<td style="text-align: center; padding: 0.2cm;">0.737<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.708<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.704<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.795<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.665<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.528<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm;">0.443<span style="vertical-align:super;font-size:0.8em;">***</span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">-0.039<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm; color: #999999;">0.022<span style="vertical-align:super;font-size:0.8em;"></span></td>
+<td style="text-align: center; padding: 0.2cm;">&nbsp;</td>
+</tr>
+<tr class="even">
+<td colspan="11" style="text-align: right; border-bottom: double black; border-top: 1px solid black; font-style: italic; font-size: 0.9em;">Computed correlation used pearson-method with listwise-deletion.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Con esta primera revisión se puede identificar, bajo los criterios que establece Cohen (1998), que de manera general se presenta una asociación moderada entre las variables. Los coeficientes de correlación de Pearson evidencian una asociación positiva y moderada entre las variables de confianza, respeto y apoyo a las instituciones políticas.</p>
+<p>Considerando la información de la tabla, se prosigue con la construcción de dos indices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas. Basándonos en el enfoque tomado por <span class="citation" data-cites="ignacioirarrázaval2023">Ignacio Irarrázaval and Florencia Cruz (<a href="#ref-ignacioirarrázaval2023" role="doc-biblioref">2023</a>)</span> se procede a desarrollar dos índices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas.</p>
+<p>Bajo este primer análisis no se consideran relevantes los coeficientes que muestran la relación de la variable “religión” con las demás que se han trabajado, esto porque se trata de una variable nominal. Para poder visualizar la asociación de el resto de variables</p>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-annetteschnabelGodWeTrust2014" class="csl-entry" role="doc-biblioentry">
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-annetteschnabelGodWeTrust2014" class="csl-entry" role="listitem">
 Annette Schnabel, Annette Schnabel, Florian Groetsch, and Florian Groetsch. 2014. <span>“In <span>God</span> We Trust – the Role of Religion for Cohesion and Integration in Current <span>European</span> Societies.”</span> <em>European Journal of Cultural and Political Sociology</em> 1 (4): 375–98. <a href="https://doi.org/10.1080/23254823.2015.1057752">https://doi.org/10.1080/23254823.2015.1057752</a>.
 </div>
-<div id="ref-evgueniafediakovaSeparatismoParticipacionEvangelicos2002" class="csl-entry" role="doc-biblioentry">
+<div id="ref-evgueniafediakovaSeparatismoParticipacionEvangelicos2002" class="csl-entry" role="listitem">
 Evguenia Fediakova. 2002. <span>“Separatismo o Participaci<span>ó</span>n: Evang<span>é</span>licos Chilenos Frente a La Pol<span>í</span>tica.”</span> <em>Revista De Ciencia Politica</em> 22 (2): 32–45. <a href="https://doi.org/10.4067/s0718-090x2002000200003">https://doi.org/10.4067/s0718-090x2002000200003</a>.
 </div>
-<div id="ref-fabianriffoQueInfluyeConfianza2019" class="csl-entry" role="doc-biblioentry">
+<div id="ref-fabianriffoQueInfluyeConfianza2019" class="csl-entry" role="listitem">
 Fabian Riffo, Fabian Riffo, Daniela Pérez, Daniela Pérez, César Antonio Salazar Espinoza, César Salazar Espinoza, César Antonio Salazar Espinoza, Andrés A. Acuña-Duarte, Andrés A. Acuña-Duarte, and Andrés A. Acuña Duarte. 2019. <span>“<span></span><span>Qu<span>é</span></span> Influye En La Confianza En Las Instituciones? <span>Evidencia</span> Emp<span>í</span>rica Para <span>Chile</span>.”</span> <em>Revista Facultad de Ciencias Econ<span>ó</span>micas</em> 27 (2): 83–104. <a href="https://doi.org/10.18359/rfce.3517">https://doi.org/10.18359/rfce.3517</a>.
 </div>
-<div id="ref-ignaciocaceresReincorporandoReligionComprension2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-ignaciocaceresReincorporandoReligionComprension2022" class="csl-entry" role="listitem">
 Ignacio Cáceres. 2022. <span>“Reincorporando La Religi<span>ó</span>n En La Comprensi<span>ó</span>n de La Cohesi<span>ó</span>n Social En <span class="nocase">Latinoam<span class="nocase">é</span>rica</span>.”</span> <em>Revista Temas Sociol<span>ó</span>gicos</em>, no. 30 (July): 137–67. <a href="https://doi.org/10.29344/07196458.30.3194">https://doi.org/10.29344/07196458.30.3194</a>.
 </div>
-<div id="ref-ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-ignacioirarrázaval2023" class="csl-entry" role="listitem">
+Ignacio Irarrázaval, and Florencia Cruz. 2023. <span>“Confianza Institucional En Chile: Un Desafío Para El Desarrollo.”</span> <a href="https://static.cepchile.cl/uploads/cepchile/2023/12/pder682_-irarrazaval.pdf">https://static.cepchile.cl/uploads/cepchile/2023/12/pder682_-irarrazaval.pdf</a>.
+</div>
+<div id="ref-ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022" class="csl-entry" role="listitem">
 Ignacio Sepúlveda-Rodríguez, and Luis Garrido-Vergara. 2022. <span>“Satisfacci<span>ó</span>n Con La Democracia y Legitimidad En <span>Chile</span>.”</span> <em>Revista de Sociolog<span>í</span>a</em> 37 (2): 1–15. <a href="https://doi.org/10.5354/0719-529x.2022.69099">https://doi.org/10.5354/0719-529x.2022.69099</a>.
 </div>
-<div id="ref-josephchanRECONSIDERINGSOCIALCOHESION2006" class="csl-entry" role="doc-biblioentry">
+<div id="ref-josephchanRECONSIDERINGSOCIALCOHESION2006" class="csl-entry" role="listitem">
 Joseph Chan, Joseph Chan, Joseph Chan, Joseph Chan, Ho-Pong To, Ho-Pong To, Elaine Chan, and Elaine Chan. 2006. <span>“<span>RECONSIDERING SOCIAL COHESION</span>: <span>DEVELOPING A DEFINITION AND ANALYTICAL FRAMEWORK FOR EMPIRICAL RESEARCH</span>.”</span> <em>Social Indicators Research</em> 75 (2): 273–302. <a href="https://doi.org/10.1007/s11205-005-2118-1">https://doi.org/10.1007/s11205-005-2118-1</a>.
 </div>
-<div id="ref-mauriciomoralesquirogaEstallidoSocialChile2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-mauriciomoralesquirogaEstallidoSocialChile2020" class="csl-entry" role="listitem">
 Mauricio Morales Quiroga. 2020. <span>“Estallido Social En <span>Chile</span> 2019: Participaci<span>ó</span>n, Representaci<span>ó</span>n, Confianza Institucional y Esc<span>á</span>ndalos p<span>ú</span>blicos”</span> 33 (98): 3–25. <a href="https://doi.org/10.15446/anpol.v33n98.89407">https://doi.org/10.15446/anpol.v33n98.89407</a>.
 </div>
 </div></section></div></main>
@@ -353,9 +515,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -391,10 +567,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -404,8 +597,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -417,9 +619,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -460,6 +898,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
