@@ -8,6 +8,13 @@ link-citations: true
 justify: true
 ---
 
+```{css}
+#| echo: false 
+p {
+  text-align: justify 
+  }
+```
+
 ## Introducción
 
 En el marco de los problemas que presenta el sistema político chileno, distintos estudios han explorado factores que influyen en el buen funcionamiento de las instituciones democráticas. En ese contexto, como señalan @ignaciosepulveda-rodriguezSatisfaccionConDemocracia2022:
@@ -239,6 +246,108 @@ sjPlot::tab_corr(proc_data2,
 
 Con esta primera revisión se puede identificar, bajo los criterios que establece Cohen (1998), que de manera general se presenta una asociación moderada entre las variables. Los coeficientes de correlación de Pearson evidencian una asociación positiva y moderada entre las variables de confianza, respeto y apoyo a las instituciones políticas.
 
-Considerando la información de la tabla, se prosigue con la construcción de dos indices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas. Basándonos en el enfoque tomado por @ignacioirarrázaval2023 sobre la clasificación de variables de confianza, en donde se establece la construcción de indices de tipo promedio simple, de esta manera se procede a desarrollar dos indices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas.
+Considerando la información de la tabla, se prosigue con la construcción de dos índices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas. Basándonos en el enfoque tomado por @ignacioirarrázaval2023 sobre la clasificación de variables de confianza, en donde se establece la construcción de índices de tipo promedio simple, de esta manera se procede a desarrollar dos índices que sinteticen y expresen los niveles de confianza y la actitud que se tiene hacia las instituciones políticas (para el índice de actitud hacia las instituciones políticas se trabaja con las variables de apoyo y respeto hacia las instituciones políticas).
 
 Cabe mencionar que este primer análisis no se consideran relevantes los coeficientes que muestran la relación de la variable "religión" con las demás que se han trabajado, esto porque se trata de una variable nominal. Para poder visualizar la asociación de el resto de variables con la religión se opta por una tabla de contingencia que se expone más adelante.
+
+### Índice de confianza institucional
+
+```{r}
+#| warning: false
+#| echo: false
+summary(proc_data$indice_confianza)
+```
+
+```{r}
+#| warning: false
+#| echo: false
+#Indice de confianza
+proc_data = proc_data %>% mutate(indice_confianza = rowMeans(proc_data %>% select(conf_congreso, conf_partpol,
+                                                                                  conf_presidente, conf_cortsup,
+                                                                                  conf_mun), na.rm=T))
+#indice de disposición a las instituciones políticas
+proc_data = proc_data %>% mutate(indice_disp_inst = rowMeans(proc_data %>% select(apoyo_sistpol, respeto_istpol), na.rm=T))
+
+#Graficos de los indices
+
+ggplot(proc_data, aes(x = proc_data$indice_confianza)) +
+  geom_histogram(binwidth=0.6, colour="#1ABC9C", fill="#1ABC9C") +
+  theme_bw() +
+  xlab("Confianza institucional") +
+  ylab("Cantidad")
+```
+
+### Índice de actitud hacia las instituciones políticas
+
+```{r}
+#| warning: false
+#| echo: false
+summary(proc_data$indice_disp_inst)
+```
+
+```{r}
+#| warning: false
+#| echo: false
+ggplot(proc_data, aes(x = proc_data$indice_disp_inst)) +
+  geom_histogram(binwidth=0.6, colour="#1ABC9C", fill="#1ABC9C") +
+  theme_bw() +
+  xlab("Actitud hacia las instituciones políticas") +
+  ylab("Cantidad")
+```
+
+Tomando en consideración que ambos indices son de promedio, se puede indicar que en general tanto la confianza como la actitud hacia las instituciones políticas es moderada en Chile. Los casos se concentran más en los valores intermedios de los índices, sin embargo se puede indentificar que la confianza institucional se ve más afectada que la actitud que los ciudadanos toman respecto a estas mismas. De este modo se identifica un panorama en el que pese al degradamiento que pueda tener la institucionalidad política del país, los ciudadanos no se posicionan ante él de forma totalmente negativa, el respaldo hacia esta se mantiene.
+
+A continuación se muestra la asociación entre estos índices construidos y la religión de los ciudadanos. Mediante una tabla de contingencia se expresa esta información.
+
+## Tablas de contingencia
+
+### Confianza institucional según religión
+
+```{r}
+#| warning: false
+#| echo: false
+proc_data$indice_confianza = set_label(x = proc_data$indice_confianza,label = "Confianza institucional")
+get_label(proc_data$indice_confianza)
+
+proc_data$indice_disp_inst = set_label(x = proc_data$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
+get_label(proc_data$indice_disp_inst)
+
+#Recodificación de variables
+proc_data = proc_data %>% mutate(indice_confianza = case_when(indice_confianza >= 1 & indice_confianza <2 ~ "Nada de confianza",
+                                                         indice_confianza >= 2 & indice_confianza <3 ~ "Poca confianza",
+                                                         indice_confianza >= 3 & indice_confianza <4  ~ "Algo de confianza",
+                                                         indice_confianza >= 4 & indice_confianza <5 ~ "Moderada confianza",
+                                                         indice_confianza >= 5  & indice_confianza <6  ~ "Mucha confianza", 
+                                                         indice_confianza >= 6 & indice_confianza <=7 ~ "Absoluta confianza",
+                                                         TRUE ~ NA))
+proc_data$indice_confianza = set_label(x = proc_data$indice_confianza,label = "Confianza institucional")
+#Tablas de contingencia
+sjt.xtab(proc_data$religion, proc_data$indice_confianza,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
+```
+
+### Actitud hacia las instituciones políticas según religión
+
+```{r}
+#| warning: false
+#| echo: false
+proc_data = proc_data %>% mutate(indice_disp_inst = case_when(indice_disp_inst >= 1 & indice_disp_inst <2 ~ "Muy negativa",
+                                                              indice_disp_inst >= 2 & indice_disp_inst <3 ~ "Negativa",
+                                                              indice_disp_inst >= 3 & indice_disp_inst <5  ~ "Neutra",
+                                                              indice_disp_inst >= 5  & indice_disp_inst <6  ~ "Positiva", 
+                                                              indice_disp_inst >= 6 & indice_disp_inst <=7 ~ "Muy positiva",
+                                                              TRUE ~ NA))
+
+proc_data$indice_disp_inst = set_label(x = proc_data$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
+sjt.xtab(proc_data$religion, proc_data$indice_disp_inst,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
+
+```
+
+A partir de la información expresada en las tablas de contingencia, en primer lugar se puede determinar que sobre la confianza institucional si bien la mayoría de los ciudadanos se sitúan en un nivel bajo e intermedio de confianza, hay diferencias entre los distintos niveles de confianza según la religión del ciudadano pero estas diferencias se pueden atribuír a que por ejemplo en cada uno de los niveles de confianza hay un mayor porcentaje de personas de religión cristiana, lo que puede ser explicado por que esta categoría tiene muchos más casos que las otras. De este modo no se puede determinar con certeza que quienes sean religiosos presenten mayor confianza institucional que quienes no lo son.
+
+Por otro lado en la tabla sobre actitud hacia las instituciones políticas, se puede establecer que predomina un posicionamiento neutro, pero le siguen una actitud positiva y muy positiva hacia las instituciones políticas. En referencia a la diferenciación a partir de la creencia religiosa, se puede establecer que quienes se identifican con una religión tienen una tendencia hacia una actitud más positiva, pero nuevamente una mayor cantidad de casos es lo que eleva el porcentaje y las frecuencias en cada categoría, por tanto no se puede establecer con certeza que haya una diferenciación según la creencia religiosa sobre la actitud que los ciudadanos adoptan hacia las instituciones políticas.

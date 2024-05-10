@@ -214,8 +214,60 @@ sjPlot::tab_corr(proc_data2,
 proc_data = proc_data %>% mutate(indice_confianza = rowMeans(proc_data %>% select(conf_congreso, conf_partpol,
                                                                                   conf_presidente, conf_cortsup,
                                                                                   conf_mun), na.rm=T))
-#indice de disposición a las instituciones políticas
+#indice de actitud hacia las instituciones políticas
 proc_data = proc_data %>% mutate(indice_disp_inst = rowMeans(proc_data %>% select(apoyo_sistpol, respeto_istpol), na.rm=T))
 
+#Graficos de los indices
 
+ggplot(proc_data, aes(x = proc_data$indice_confianza)) +
+  geom_histogram(binwidth=0.6, colour="#1ABC9C", fill="#1ABC9C") +
+  theme_bw() +
+  xlab("Confianza institucional") +
+  ylab("Cantidad")
+
+ggplot(proc_data, aes(x = proc_data$indice_disp_inst)) +
+  geom_histogram(binwidth=0.6, colour="#1ABC9C", fill="#1ABC9C") +
+  theme_bw() +
+  xlab("Actitud hacia las instituciones políticas") +
+  ylab("Cantidad")
+
+#Asociación con variable nominal - Tabla de contingencia ----
+#Recodificación de los indices
+#Etiquetas de las variables
+proc_data$indice_confianza = set_label(x = proc_data$indice_confianza,label = "Confianza institucional")
+get_label(proc_data$indice_confianza)
+
+proc_data$indice_disp_inst = set_label(x = proc_data$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
+get_label(proc_data$indice_disp_inst)
+
+#Recodificación de variables
+frq(proc_data$indice_confianza)
+proc_data = proc_data %>% mutate(indice_confianza = case_when(indice_confianza >= 1 & indice_confianza <2 ~ "Nada de confianza",
+                                                         indice_confianza >= 2 & indice_confianza <3 ~ "Poca confianza",
+                                                         indice_confianza >= 3 & indice_confianza <4  ~ "Algo de confianza",
+                                                         indice_confianza >= 4 & indice_confianza <5 ~ "Moderada confianza",
+                                                         indice_confianza >= 5  & indice_confianza <6  ~ "Mucha confianza", 
+                                                         indice_confianza >= 6 & indice_confianza <=7 ~ "Absoluta confianza",
+                                                         TRUE ~ NA))
+proc_data$indice_confianza = set_label(x = proc_data$indice_confianza,label = "Confianza institucional")
+
+proc_data = proc_data %>% mutate(indice_disp_inst = case_when(indice_disp_inst >= 1 & indice_disp_inst <2 ~ "Muy negativa",
+                                                              indice_disp_inst >= 2 & indice_disp_inst <3 ~ "Negativa",
+                                                              indice_disp_inst >= 3 & indice_disp_inst <5  ~ "Neutra",
+                                                              indice_disp_inst >= 5  & indice_disp_inst <6  ~ "Positiva", 
+                                                              indice_disp_inst >= 6 & indice_disp_inst <=7 ~ "Muy positiva",
+                                                              TRUE ~ NA))
+proc_data$indice_disp_inst = set_label(x = proc_data$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
+frq(proc_data$indice_disp_inst)
+
+#Tablas de contingencia
+sjt.xtab(proc_data$religion, proc_data$indice_confianza,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
+
+sjt.xtab(proc_data$religion, proc_data$indice_disp_inst,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
 
