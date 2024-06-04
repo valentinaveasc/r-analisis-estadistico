@@ -8,8 +8,7 @@ pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,
                kableExtra, ggplot2, sjPlot, tidyverse)
 
 ## Cargar base de datos
-lapop_2023 = read_dta("~/Downloads/r-analisis-estadistico/r-analisis-estadistico/Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta")
-
+lapop_2023 = read_dta("Input/CHL_2023_LAPOP_AmericasBarometer_v1.0_w.dta")
 ## selección de variables ----
 find_var(data = lapop_2023,"Confianza")
 find_var(data = lapop_2023,"Religión")
@@ -113,7 +112,7 @@ proc_data$religion <- factor(proc_data$religion,
                              levels = c(1, 4, 7, 11))
 frq(proc_data$religion)
 
-##Variable de género ----
+  ##Variable de género ----
 frq(proc_data$q1tc_r)
 
 #Al revisar el descriptivo se presenta solo un caso que no se identifica ni como hombre ni como mujer, 
@@ -233,41 +232,91 @@ ggplot(proc_data, aes(x = proc_data$indice_disp_inst)) +
 
 #Asociación con variable nominal - Tabla de contingencia ----
 #Recodificación de los indices
-#Etiquetas de las variables
-proc_data$indice_confianza = set_label(x = proc_data$indice_confianza,label = "Confianza institucional")
-get_label(proc_data$indice_confianza)
+#Indice de confianza con categorías
+proc_data3 = proc_data
+proc_data3 = proc_data3 %>% mutate(indice_confianza = rowMeans(proc_data3 %>% select(conf_congreso, conf_partpol,
+                                                                                   conf_presidente, conf_cortsup,
+                                                                                   conf_mun), na.rm=T))
 
-proc_data$indice_disp_inst = set_label(x = proc_data$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
-get_label(proc_data$indice_disp_inst)
+proc_data3 = proc_data3 %>% mutate(indice_confianza = case_when(indice_confianza >= 1 & indice_confianza <2 ~ "Nada de confianza",
+                                                                indice_confianza >= 2 & indice_confianza <3 ~ "Poca confianza",
+                                                                indice_confianza >= 3 & indice_confianza <4  ~ "Algo de confianza",
+                                                                indice_confianza >= 4 & indice_confianza <5 ~ "Moderada confianza",
+                                                                indice_confianza >= 5  & indice_confianza <6  ~ "Mucha confianza", 
+                                                                indice_confianza >= 6 & indice_confianza <=7 ~ "Absoluta confianza",
+                                                                TRUE ~ NA))
 
-#Recodificación de variables
-frq(proc_data$indice_confianza)
-proc_data = proc_data %>% mutate(indice_confianza = case_when(indice_confianza >= 1 & indice_confianza <2 ~ "Nada de confianza",
-                                                         indice_confianza >= 2 & indice_confianza <3 ~ "Poca confianza",
-                                                         indice_confianza >= 3 & indice_confianza <4  ~ "Algo de confianza",
-                                                         indice_confianza >= 4 & indice_confianza <5 ~ "Moderada confianza",
-                                                         indice_confianza >= 5  & indice_confianza <6  ~ "Mucha confianza", 
-                                                         indice_confianza >= 6 & indice_confianza <=7 ~ "Absoluta confianza",
-                                                         TRUE ~ NA))
-proc_data$indice_confianza = set_label(x = proc_data$indice_confianza,label = "Confianza institucional")
+proc_data3$indice_confianza = set_label(x = proc_data3$indice_confianza,label = "Confianza institucional")
+frq(proc_data3$indice_confianza)
 
-proc_data = proc_data %>% mutate(indice_disp_inst = case_when(indice_disp_inst >= 1 & indice_disp_inst <2 ~ "Muy negativa",
-                                                              indice_disp_inst >= 2 & indice_disp_inst <3 ~ "Negativa",
-                                                              indice_disp_inst >= 3 & indice_disp_inst <5  ~ "Neutra",
-                                                              indice_disp_inst >= 5  & indice_disp_inst <6  ~ "Positiva", 
-                                                              indice_disp_inst >= 6 & indice_disp_inst <=7 ~ "Muy positiva",
-                                                              TRUE ~ NA))
-proc_data$indice_disp_inst = set_label(x = proc_data$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
-frq(proc_data$indice_disp_inst)
+#indice de actitud hacia las instituciones políticas
+
+proc_data3 = proc_data3 %>% mutate(indice_disp_inst = rowMeans(proc_data3 %>% select(apoyo_sistpol, respeto_istpol), na.rm=T))
+proc_data3 = proc_data3 %>% mutate(indice_disp_inst = case_when(indice_disp_inst >= 1 & indice_disp_inst <2 ~ "Muy negativa",
+                                                                indice_disp_inst >= 2 & indice_disp_inst <3 ~ "Negativa",
+                                                                indice_disp_inst >= 3 & indice_disp_inst <5 ~ "Neutra",
+                                                                indice_disp_inst >= 5 & indice_disp_inst <6 ~ "Positiva",
+                                                                indice_disp_inst >= 6 & indice_disp_inst <=7 ~ "Muy positiva",
+                                                                TRUE ~ NA))
+
+proc_data3$indice_disp_inst = set_label(x = proc_data3$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
+
+frq(proc_data3$indice_disp_inst)
 
 #Tablas de contingencia
-sjt.xtab(proc_data$religion, proc_data$indice_confianza,
+sjt.xtab(proc_data3$religion, proc_data3$indice_confianza,
          show.col.prc=TRUE,
          show.summary=FALSE,
          encoding = "UTF-8")
 
-sjt.xtab(proc_data$religion, proc_data$indice_disp_inst,
+sjt.xtab(proc_data3$religion, proc_data3$indice_disp_inst,
          show.col.prc=TRUE,
          show.summary=FALSE,
          encoding = "UTF-8")
+
+#Modelos de regresión ----
+pacman::p_load(dplyr, car, sjmisc, sjPlot, sjlabelled, stargazer, kableExtra, corrplot, texreg, ggplot2, ggpubr)
+#Recodificar las variables dependientes a númericas
+
+#Indice de confianza
+proc_data = proc_data %>% mutate(indice_confianza = rowMeans(proc_data %>% select(conf_congreso, conf_partpol,
+                                                                                  conf_presidente, conf_cortsup,
+                                                                                  conf_mun), na.rm=T))
+descr(proc_data$indice_confianza)
+proc_data$indice_confianza = set_label(x = proc_data$indice_confianza,label = "Confianza institucional")
+#indice de actitud hacia las instituciones políticas
+proc_data = proc_data %>% mutate(indice_disp_inst = rowMeans(proc_data %>% select(apoyo_sistpol, respeto_istpol), na.rm=T))
+descr(proc_data$indice_disp_inst)
+proc_data$indice_disp_inst = set_label(x = proc_data$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
+
+modelo_1 = lm(indice_confianza ~ religion, data=proc_data)
+
+stargazer(modelo_1, type="text")
+
+modelo_2 <- lm(indice_disp_inst ~ religion, data=proc_data)
+
+stargazer(modelo_2, type="text")
+
+knitreg(list(modelo_1), 
+        custom.model.names = c("Modelo 1"),
+        custom.note = "*** p < 0.001; ** p < 0.01; * p < 0.05",
+        caption = "confianza institucional",
+        custom.coef.names = c("Intercepto", 
+                              "creyente no religioso",
+                              "religión no cristiana", 
+                              "no creyente"),
+        caption = "confianza institucional",
+        caption.above = TRUE)
+
+knitreg(list(modelo_2), 
+        custom.model.names = c("Modelo 2"),
+        custom.note = "*** p < 0.001; ** p < 0.01; * p < 0.05",
+        caption = "Actitud hacia las instituciones políticas",
+        custom.coef.names = c("Intercepto", 
+                              "creyente no religioso",
+                              "religión no cristiana", 
+                              "no creyente"),
+        caption = "Actitud hacia las instituciones políticas",
+        caption.above = TRUE)
+
 
