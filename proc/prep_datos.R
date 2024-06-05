@@ -168,23 +168,25 @@ proc_data =na.omit(proc_data)
 dim(proc_data)
 
 #Gráficos ----
+colores_personalizados = c("#16A085", "#1ABC9C", "#76D7C4", "#A3E4D7", "#D1F2EB", "#117864", "#0E6251")
+
 grafico1 = sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
                                                 conf_partpol,
                                                 conf_presidente,
                                                 conf_cortsup),
                                   title = "Confianza en instituciones políticas") +
-  theme(legend.position="bottom")
+  theme(legend.position="bottom") + 
+  scale_fill_manual(values = c("#D1F2EB", "#A3E4D7", "#76D7C4", "#1ABC9C", "#16A085", "#117864", "#0E6251"))
 grafico1
 
 frq(proc_data$religion)
+
 grafico2 <- sjPlot::plot_stackfrq(dplyr::select(proc_data, religion),
                                   title = "religiones") +
-  theme(legend.position="bottom")
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = c("#A3E4D7", "#76D7C4", "#1ABC9C", "#16A085"))
 
 grafico2
-
-colores_personalizados = c("#16A085", "#1ABC9C", "#76D7C4", "#A3E4D7")
-
 
 ##Asociación de variables ----
 

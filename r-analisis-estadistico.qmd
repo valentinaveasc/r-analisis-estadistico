@@ -161,8 +161,6 @@ proc_data$genero <- factor(proc_data$genero,
 ## Base de datos procesada para el analisis
 
 proc_data <-as.data.frame(proc_data)
-stargazer(proc_data, type="text")
-
 
 ##Gráficos y tablas
 #librerias para tablas y gráficos
@@ -191,7 +189,8 @@ grafico1 = sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
                                                 conf_presidente,
                                                 conf_cortsup),
                                   title = "Confianza en instituciones políticas") +
-  theme(legend.position="bottom")
+  theme(legend.position="bottom") + 
+  scale_fill_manual(values = c("#D1F2EB", "#A3E4D7", "#76D7C4", "#1ABC9C", "#16A085", "#117864", "#0E6251"))
 grafico1
 ```
 
@@ -209,7 +208,8 @@ Por otro lado respecto al apoyo y respeto al sistema político chileno, en base 
 frq(proc_data$religion)
 grafico2 <- sjPlot::plot_stackfrq(dplyr::select(proc_data, religion),
                                   title = "religiones") +
-  theme(legend.position="bottom")
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = c("#A3E4D7", "#76D7C4", "#1ABC9C", "#16A085"))
 
 grafico2
 ```
@@ -305,7 +305,24 @@ A continuación se muestra la asociación entre estos índices construidos y la 
 ```{r}
 #| warning: false
 #| echo: false
+proc_data3 = proc_data
+proc_data3 = proc_data3 %>% mutate(indice_confianza = rowMeans(proc_data3 %>% select(conf_congreso, conf_partpol,
+                                                                                   conf_presidente, conf_cortsup,
+                                                                                   conf_mun), na.rm=T))
 
+proc_data3 = proc_data3 %>% mutate(indice_confianza = case_when(indice_confianza >= 1 & indice_confianza <2 ~ "Nada de confianza",
+                                                                indice_confianza >= 2 & indice_confianza <3 ~ "Poca confianza",
+                                                                indice_confianza >= 3 & indice_confianza <4  ~ "Algo de confianza",
+                                                                indice_confianza >= 4 & indice_confianza <5 ~ "Moderada confianza",
+                                                                indice_confianza >= 5  & indice_confianza <6  ~ "Mucha confianza", 
+                                                                indice_confianza >= 6 & indice_confianza <=7 ~ "Absoluta confianza",
+                                                                TRUE ~ NA))
+
+proc_data3$indice_confianza = set_label(x = proc_data3$indice_confianza,label = "Confianza institucional")
+sjt.xtab(proc_data3$religion, proc_data3$indice_confianza,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
 ```
 
 ### Actitud hacia las instituciones políticas según religión
@@ -313,7 +330,20 @@ A continuación se muestra la asociación entre estos índices construidos y la 
 ```{r}
 #| warning: false
 #| echo: false
+proc_data3 = proc_data3 %>% mutate(indice_disp_inst = rowMeans(proc_data3 %>% select(apoyo_sistpol, respeto_istpol), na.rm=T))
+proc_data3 = proc_data3 %>% mutate(indice_disp_inst = case_when(indice_disp_inst >= 1 & indice_disp_inst <2 ~ "Muy negativa",
+                                                                indice_disp_inst >= 2 & indice_disp_inst <3 ~ "Negativa",
+                                                                indice_disp_inst >= 3 & indice_disp_inst <5 ~ "Neutra",
+                                                                indice_disp_inst >= 5 & indice_disp_inst <6 ~ "Positiva",
+                                                                indice_disp_inst >= 6 & indice_disp_inst <=7 ~ "Muy positiva",
+                                                                TRUE ~ NA))
 
+proc_data3$indice_disp_inst = set_label(x = proc_data3$indice_disp_inst,label = "Actitud hacia las instituciones políticas")
+
+sjt.xtab(proc_data3$religion, proc_data3$indice_disp_inst,
+         show.col.prc=TRUE,
+         show.summary=FALSE,
+         encoding = "UTF-8")
 ```
 
 A partir de la información expresada en las tablas de contingencia, en primer lugar se puede determinar que sobre la confianza institucional si bien la mayoría de los ciudadanos se sitúan en un nivel bajo e intermedio de confianza, hay diferencias entre los distintos niveles de confianza según la religión del ciudadano pero estas diferencias se pueden atribuír a que por ejemplo en cada uno de los niveles de confianza hay un mayor porcentaje de personas de religión cristiana, lo que puede ser explicado por que esta categoría tiene muchos más casos que las otras. De este modo no se puede determinar con certeza que quienes sean religiosos presenten mayor confianza institucional que quienes no lo son.

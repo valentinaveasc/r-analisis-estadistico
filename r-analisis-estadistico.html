@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,6 +25,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -84,7 +85,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <div class="cell">
 <style type="text/css">
@@ -114,20 +117,6 @@ p {
 <section id="tablas-descriptivas-generales" class="level3">
 <h3 class="anchored" data-anchor-id="tablas-descriptivas-generales">Tablas descriptivas generales</h3>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-============================================
-Statistic         N   Mean  St. Dev. Min Max
---------------------------------------------
-conf_congreso   1,627 2.964  1.616    1   7 
-conf_partpol    1,622 2.283  1.479    1   7 
-conf_presidente 1,634 3.206  1.956    1   7 
-conf_cortsup    1,619 3.216  1.643    1   7 
-conf_mun        1,626 3.970  1.693    1   7 
-apoyo_sistpol   1,606 4.111  1.815    1   7 
-respeto_istpol  1,626 4.330  1.891    1   7 
---------------------------------------------</code></pre>
-</div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -262,7 +251,11 @@ respeto_istpol  1,626 4.330  1.891    1   7
 <h3 class="anchored" data-anchor-id="gráfico-confianza-en-instituciones-políticas">Gráfico “confianza en instituciones políticas”</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En base a esta primera tabla y gráfico se puede indicar que en primer lugar sobre las variables de confianza en las distintas instituciones del sistema político, si se considera la escala de estas variables donde 1 significa nada de confianza y 7 mucha confianza, se puede observar en base a los promedios de estas variables que la confianza en las instituciones en general no es alta.</p>
@@ -285,7 +278,11 @@ no creyente           | 133 |  8.05 |    8.30 | 100.00
 &lt;NA&gt;                  |  51 |  3.09 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Observando la anterior tabla y gráfico se puede señalar que hay una presencia considerable de personas que se indetifican con una religión, de esta manera la mayoría se categoriza en una religión cristiana, conformando el56,1% de la muestra (817 casos). Siguiendo con esto quienes son creyentes pero no se identifican con ninguna religión representan la segunda mayoría, con un total de 459 casos representan el 31% del total, de esta manera quienes se identifican con una religión no cristiana y quienes no son creyentes representan una minoría, haciendo en conjunto un total de 201 casos, valor que no supera a ninguna de las categorias anteriores.</p>
@@ -297,6 +294,7 @@ no creyente           | 133 |  8.05 |    8.30 | 100.00
 <p>En la siguiente tabla permite ver a modo general la asociación de las variables trabajadas mostrando una matriz de correlación, que indica la dirección y fuerza de la asociación</p>
 <div class="cell">
 <div class="cell-output-display">
+<div>
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <tbody>
 <tr class="odd">
@@ -449,6 +447,7 @@ no creyente           | 133 |  8.05 |    8.30 | 100.00
 </table>
 </div>
 </div>
+</div>
 <p>Con esta primera revisión se puede identificar, bajo los criterios que establece Cohen (1998), que de manera general se presenta una asociación moderada entre las variables. Los coeficientes de correlación de Pearson evidencian una asociación positiva y moderada entre las variables de confianza, respeto y apoyo a las instituciones políticas.</p>
 <p>Considerando la información de la tabla, se prosigue con la construcción de dos índices que sinteticen y expresen los niveles de confianza y disposición hacia las instituciones políticas. Basándonos en el enfoque tomado por <span class="citation" data-cites="ignacioirarrázaval2023">Ignacio Irarrázaval and Florencia Cruz (<a href="#ref-ignacioirarrázaval2023" role="doc-biblioref">2023</a>)</span> sobre la clasificación de variables de confianza, en donde se establece la construcción de índices de tipo promedio simple, de esta manera se procede a desarrollar dos índices que sinteticen y expresen los niveles de confianza y la actitud que se tiene hacia las instituciones políticas (para el índice de actitud hacia las instituciones políticas se trabaja con las variables de apoyo y respeto hacia las instituciones políticas).</p>
 <p>Cabe mencionar que este primer análisis no se consideran relevantes los coeficientes que muestran la relación de la variable “religión” con las demás que se han trabajado, esto porque se trata de una variable nominal. Para poder visualizar la asociación de el resto de variables con la religión se opta por una tabla de contingencia que se expone más adelante.</p>
@@ -462,7 +461,11 @@ no creyente           | 133 |  8.05 |    8.30 | 100.00
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -476,7 +479,11 @@ no creyente           | 133 |  8.05 |    8.30 | 100.00
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r-analisis-estadistico_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Tomando en consideración que ambos indices son de promedio, se puede indicar que en general tanto la confianza como la actitud hacia las instituciones políticas es moderada en Chile. Los casos se concentran más en los valores intermedios de los índices, sin embargo se puede indentificar que la confianza institucional se ve más afectada que la actitud que los ciudadanos toman respecto a estas mismas. De este modo se identifica un panorama en el que pese al degradamiento que pueda tener la institucionalidad política del país, los ciudadanos no se posicionan ante él de forma totalmente negativa, el respaldo hacia esta se mantiene.</p>
@@ -487,16 +494,246 @@ no creyente           | 133 |  8.05 |    8.30 | 100.00
 <h2 class="anchored" data-anchor-id="tablas-de-contingencia">Tablas de contingencia</h2>
 <section id="confianza-institucional-según-religión" class="level3">
 <h3 class="anchored" data-anchor-id="confianza-institucional-según-religión">Confianza institucional según religión</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; border-bottom: 1px solid;">religion</td>
+<td colspan="6" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal;">Confianza<br>
+institucional</td>
+<td rowspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; font-weight: bolder; font-style: italic; border-bottom: 1px solid;">Total</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Absoluta confianza</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Algo de confianza</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Moderada confianza</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Mucha confianza</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Nada de confianza</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Poca confianza</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">religión cristiana</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">19</span><br>
+<span style="color:#339933;">73.1&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">239</span><br>
+<span style="color:#339933;">54&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">175</span><br>
+<span style="color:#339933;">58.9&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">79</span><br>
+<span style="color:#339933;">64.2&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">159</span><br>
+<span style="color:#339933;">52.6&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">228</span><br>
+<span style="color:#339933;">55.5&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">899</span><br>
+<span style="color:#339933;">56.1&nbsp;%</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">creyente no<br>
+religioso</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">2</span><br>
+<span style="color:#339933;">7.7&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">140</span><br>
+<span style="color:#339933;">31.6&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">83</span><br>
+<span style="color:#339933;">27.9&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">28</span><br>
+<span style="color:#339933;">22.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">93</span><br>
+<span style="color:#339933;">30.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">138</span><br>
+<span style="color:#339933;">33.6&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">484</span><br>
+<span style="color:#339933;">30.2&nbsp;%</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">religión no<br>
+cristiana</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">4</span><br>
+<span style="color:#339933;">15.4&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">25</span><br>
+<span style="color:#339933;">5.6&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">13</span><br>
+<span style="color:#339933;">4.4&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">6</span><br>
+<span style="color:#339933;">4.9&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">21</span><br>
+<span style="color:#339933;">7&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">17</span><br>
+<span style="color:#339933;">4.1&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">86</span><br>
+<span style="color:#339933;">5.4&nbsp;%</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">no creyente</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">1</span><br>
+<span style="color:#339933;">3.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">39</span><br>
+<span style="color:#339933;">8.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">26</span><br>
+<span style="color:#339933;">8.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">10</span><br>
+<span style="color:#339933;">8.1&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">29</span><br>
+<span style="color:#339933;">9.6&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">28</span><br>
+<span style="color:#339933;">6.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">133</span><br>
+<span style="color:#339933;">8.3&nbsp;%</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; border-bottom: double; font-weight: bolder; font-style: italic; vertical-align: middle;">Total</td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">26</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">443</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">297</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">123</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">302</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">411</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">1602</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="actitud-hacia-las-instituciones-políticas-según-religión" class="level3">
 <h3 class="anchored" data-anchor-id="actitud-hacia-las-instituciones-políticas-según-religión">Actitud hacia las instituciones políticas según religión</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; border-bottom: 1px solid;">religion</td>
+<td colspan="5" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal;">Actitud hacia las<br>
+instituciones<br>
+políticas</td>
+<td rowspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: italic; font-weight: normal; font-weight: bolder; font-style: italic; border-bottom: 1px solid;">Total</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Muy negativa</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Muy positiva</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Negativa</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Neutra</td>
+<td style="text-align: center; border-bottom: 1px solid; padding: 0.2cm;">Positiva</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">religión cristiana</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">81</span><br>
+<span style="color:#339933;">56.2&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">180</span><br>
+<span style="color:#339933;">62.5&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">70</span><br>
+<span style="color:#339933;">52.6&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">351</span><br>
+<span style="color:#339933;">51.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">210</span><br>
+<span style="color:#339933;">60.3&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">892</span><br>
+<span style="color:#339933;">56.1&nbsp;%</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">creyente no<br>
+religioso</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">40</span><br>
+<span style="color:#339933;">27.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">81</span><br>
+<span style="color:#339933;">28.1&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">45</span><br>
+<span style="color:#339933;">33.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">223</span><br>
+<span style="color:#339933;">32.9&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">92</span><br>
+<span style="color:#339933;">26.4&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">481</span><br>
+<span style="color:#339933;">30.2&nbsp;%</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">religión no<br>
+cristiana</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">9</span><br>
+<span style="color:#339933;">6.2&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">12</span><br>
+<span style="color:#339933;">4.2&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">5</span><br>
+<span style="color:#339933;">3.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">42</span><br>
+<span style="color:#339933;">6.2&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">17</span><br>
+<span style="color:#339933;">4.9&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">85</span><br>
+<span style="color:#339933;">5.3&nbsp;%</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: middle;">no creyente</td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">14</span><br>
+<span style="color:#339933;">9.7&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">15</span><br>
+<span style="color:#339933;">5.2&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">13</span><br>
+<span style="color:#339933;">9.8&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">62</span><br>
+<span style="color:#339933;">9.1&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">29</span><br>
+<span style="color:#339933;">8.3&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm;"><span style="color:black;">133</span><br>
+<span style="color:#339933;">8.4&nbsp;%</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; border-bottom: double; font-weight: bolder; font-style: italic; vertical-align: middle;">Total</td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">144</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">288</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">133</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">678</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">348</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+<td style="text-align: center; padding: 0.2cm; border-bottom: double;"><span style="color:black;">1591</span><br>
+<span style="color:#339933;">100&nbsp;%</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>A partir de la información expresada en las tablas de contingencia, en primer lugar se puede determinar que sobre la confianza institucional si bien la mayoría de los ciudadanos se sitúan en un nivel bajo e intermedio de confianza, hay diferencias entre los distintos niveles de confianza según la religión del ciudadano pero estas diferencias se pueden atribuír a que por ejemplo en cada uno de los niveles de confianza hay un mayor porcentaje de personas de religión cristiana, lo que puede ser explicado por que esta categoría tiene muchos más casos que las otras. De este modo no se puede determinar con certeza que quienes sean religiosos presenten mayor confianza institucional que quienes no lo son.</p>
 <p>Por otro lado en la tabla sobre actitud hacia las instituciones políticas, se puede establecer que predomina un posicionamiento neutro, pero le siguen una actitud positiva y muy positiva hacia las instituciones políticas. En referencia a la diferenciación a partir de la creencia religiosa, se puede establecer que quienes se identifican con una religión tienen una tendencia hacia una actitud más positiva, pero nuevamente una mayor cantidad de casos es lo que eleva el porcentaje y las frecuencias en cada categoría, por tanto no se puede establecer con certeza que haya una diferenciación según la creencia religiosa sobre la actitud que los ciudadanos adoptan hacia las instituciones políticas.</p>
 </section>
 </section>
 <section id="modelos-de-regresión-lineal" class="level2">
 <h2 class="anchored" data-anchor-id="modelos-de-regresión-lineal">Modelos de regresión lineal</h2>
-
 <table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
 <caption>
 confianza institucional
@@ -608,7 +845,6 @@ Num. obs.
 </td>
 </tr>
 </tfoot>
-
 </table>
 <table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
 <caption>
@@ -721,12 +957,11 @@ Num. obs.
 </td>
 </tr>
 </tfoot>
-
 </table>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-annetteschnabelGodWeTrust2014" class="csl-entry" role="listitem">
 Annette Schnabel, Annette Schnabel, Florian Groetsch, and Florian Groetsch. 2014. <span>“In <span>God</span> We Trust – the Role of Religion for Cohesion and Integration in Current <span>European</span> Societies.”</span> <em>European Journal of Cultural and Political Sociology</em> 1 (4): 375–98. <a href="https://doi.org/10.1080/23254823.2015.1057752">https://doi.org/10.1080/23254823.2015.1057752</a>.
 </div>
@@ -832,10 +1067,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -845,8 +1097,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -858,7 +1119,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -902,6 +1286,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -927,6 +1312,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -987,6 +1398,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
