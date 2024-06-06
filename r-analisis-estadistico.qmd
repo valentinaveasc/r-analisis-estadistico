@@ -370,6 +370,8 @@ knitreg(list(modelo_1),
         caption.above = TRUE)
 ```
 
+El modelo de regresión sobre la confianza institucional incluye la religión de los encuestados como variable independiente. De este modo los datos que proporciona el modelo estimado indican un intercepto de 3,25, que representa el nivel promedio de confianza institucional para quienes son de una religión cristiana. Para quienes son creyentes pero no son religiosos, el modelo estima 0,23 puntos menos de confianza en promedio respecto a los cristianos, diferencia estadísticamente significativa (p \< 0,01). También en el caso de quienes son de una religión no cristiana se presenta una disminución de confianza respecto a los cristianos de 0,14 puntos, por otro lado la confianza institucional en quienes no son creyentes se ve disminuida en 0,09 puntos en referencia a quienes son cristianos. Con este razonamiento, todas las categorías presentan una disminución de la confianza institucional respecto a la de quienes son de una religión cristiana, siendo la unica diferencia estadísticamente significativa la que muestran quienes son creyentes no religiosos. Por otro lado, el modelo solo logra explicar el 1% de la vairiabilidad sobre la confianza institucional, por tanto en base a lo estimado la religión no tiene demasiada incidencia sobre cómo se comporten los niveles de confianza institucional.
+
 ```{r}
 #| warning: false
 #| echo: false
@@ -386,3 +388,7 @@ knitreg(list(modelo_2),
         caption.above = TRUE)
 
 ```
+
+En este segundo modelo se estima la actitud hacia las instituciones políticas tomando nuevamente como variable independiente la religión. El intercepto del modelo es de 4,32 lo que indica que la actitud hacia las instituciones políticas de quienes son de una religión cristiana. Para quienes son creyentes pero no religiosos, el modelo estima una reducción de 0,21 puntos en su actitud hacia las instituciones políticas en comparación con los cristianos. Esta diferencia es estadísticamente significativa (p \< 0.05). Por otro lado los niveles en quienes son de una religión también disminuyen, con 0,27 puntos menos en promedio respecto a los cristianos. Por otro lado está la predicción para quienes no son creyentes, el modelo estima una disminución de 0,33 puntos en la actitud hacia las instituciones políticas en comparación con los cristianos. Esta diferencia es estadísticamente significativa (p \< 0.05). En este modelo se repite la poca influencia que muestra la religión en el modelo sobre la variabilidad en la actitd hacia las instituciones políticas, con solo el 1%.
+
+Considerando los modelos estimados, se puede señalar que la confianza institucional es mayor y hay una mejor actitud hacia las instituciones políticas por parte de quienes son de una religión cristiana, si se les compara con el resto. Pero esta conclusión no es del todo correcta, ya que los modelos mostraron que había muy baja proporción de explicación sobre la variabilidad en la confianza y actitud sobre las instituciones políticas de parte de la religión con la que se identifican los ciudadanos.
