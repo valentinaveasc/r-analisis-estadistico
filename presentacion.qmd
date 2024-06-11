@@ -1,0 +1,15 @@
+---
+title: "Religión en Chile y la confianza en el sistema político"
+author: "Valentina Veas"
+format:
+  revealjs: 
+    theme: default
+editor: visual
+---
+
+# Introducción
+
+
+
+
+# resultados

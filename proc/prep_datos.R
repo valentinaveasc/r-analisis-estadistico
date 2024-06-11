@@ -2,7 +2,7 @@
 "Valentina Veas Camarada"
 
 ## Análisis descriptivo
-
+options(scipen = 999)
 ## cargar paquetes
 pacman::p_load(dplyr, sjmisc, car, sjlabelled, stargazer, haven, summarytools,
                kableExtra, ggplot2, sjPlot, tidyverse)
@@ -177,7 +177,10 @@ grafico1 = sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
                                   title = "Confianza en instituciones políticas") +
   theme(legend.position="bottom") + 
   scale_fill_manual(values = c("#D1F2EB", "#A3E4D7", "#76D7C4", "#1ABC9C", "#16A085", "#117864", "#0E6251"))
+
 grafico1
+ggsave(grafico1, file="output/graficos/grafico1.png")
+
 
 frq(proc_data$religion)
 
@@ -187,7 +190,7 @@ grafico2 <- sjPlot::plot_stackfrq(dplyr::select(proc_data, religion),
   scale_fill_manual(values = c("#A3E4D7", "#76D7C4", "#1ABC9C", "#16A085"))
 
 grafico2
-
+ggsave(grafico2, file="output/graficos/grafico2.png")
 ##Asociación de variables ----
 
 proc_data2 = proc_data %>% mutate_all(~(as.numeric(.)))
@@ -321,4 +324,26 @@ knitreg(list(modelo_2),
         caption = "Actitud hacia las instituciones políticas",
         caption.above = TRUE)
 
+#graficar modelo - Valores predichos
 
+ggeffects::ggpredict(modelo_1, terms = c("religion")) %>%
+  ggplot(aes(x=x, y=predicted)) +
+  geom_bar(stat="identity", color="#117864", fill="#117864")+
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=.1) +
+  labs(title="confianza institucional", x = "", y = "") +
+  theme_bw() +
+  scale_x_discrete(name = "",
+                     labels = c("intercepto", "creyente no religioso", "religión no cristiana", "no creyente"))+
+  scale_y_continuous(limits = c(0,7), 
+                     breaks = seq(0,16, by = 1))
+
+ggeffects::ggpredict(modelo_2, terms = c("religion")) %>%
+  ggplot(aes(x=x, y=predicted)) +
+  geom_bar(stat="identity", color="#1ABC9C", fill="#1ABC9C")+
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width=.1) +
+  labs(title="Actitud hacia las instituciones políticas", x = "", y = "") +
+  theme_bw() +
+  scale_x_discrete(name = "",
+                   labels = c("intercepto", "creyente no religioso", "religión no cristiana", "no creyente"))+
+  scale_y_continuous(limits = c(0,7), 
+                     breaks = seq(0,16, by = 1))
