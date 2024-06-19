@@ -8,7 +8,7 @@
 <link href="presentacion_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="presentacion_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="presentacion_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.353">
+  <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Valentina Veas">
   <title>Religión en Chile y la confianza en el sistema político</title>
@@ -29,7 +29,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="presentacion_files/libs/revealjs/dist/theme/quarto.css">
   <link href="presentacion_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="presentacion_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -156,7 +176,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -338,13 +359,78 @@ Valentina Veas
 </section>
 <section id="introducción" class="title-slide slide level1 center">
 <h1>Introducción</h1>
-
+<p>En el marco de los problemas que presenta el sistema político chileno, distintos estudios han explorado factores que influyen en el buen funcionamiento de las instituciones democráticas. En relación a lo anterior, la poca confianza en las instituciones políticas surge como un factor decisivo ante las crisis y problemáticas que afectan al sistema político. Se han evidenciado distintos factores que pueden incidir en la confianza hacia las instituciones, uno de estos elementos puede ser la religión.</p>
 </section>
 
-<section id="resultados" class="title-slide slide level1 center">
-<h1>resultados</h1>
+<section id="objetivos" class="title-slide slide level1 center">
+<h1>objetivos</h1>
+<p>Se propone como objeto central de esta investigación poder observar la confianza hacia el sistema político de parte de quienes profesan o se identifican con alguna corriente religiosa para compararla con los niveles de confianza de quienes no son religiosos. Partiendo de la hipótesis proveniente de la propuesta de investigación de <span class="citation" data-cites="ignaciocaceresReincorporandoReligionComprension2022">Ignacio Cáceres (<a href="#/referencias" role="doc-biblioref" onclick="">2022</a>)</span>, en la que se espera que quienes se identifican con alguna religión presenten mayores niveles de confianza en la política en comparación a quienes no lo hacen. De este modo se trabajará con la base de datos de la encuesta LAPOP Barómetro de las Américas, en su medición del año 2023 en Chile</p>
+</section>
+
+<section id="resultados-descriptivos" class="title-slide slide level1 center">
+<h1>Resultados descriptivos</h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>Se puede señalar que hay una presencia considerable de personas que se identifican con una religión, la mayoría se categoriza en una religión cristiana, conformando el 56,1% de la muestra. Siguiendo con esto quienes son creyentes pero no se identifican con ninguna religión representan la segunda mayoría, con un total de 459 casos, de esta manera quienes se identifican con una religión no cristiana y quienes no son creyentes representan una minoría, haciendo en conjunto un total de 201 casos, valor que no supera las categorías anteriores.</p>
+</div><div class="column" style="width:60%;">
+<p><img data-src="output/graficos/grafico2.png"></p>
+</div>
+</div>
+</section>
+
+<section id="resultados-descriptivos-1" class="title-slide slide level1 center">
+<h1>Resultados descriptivos</h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>De manera específica se observa que instituciones como los partidos políticos y el congreso son las que presentan niveles de confianza más bajos, con una media de 2,28 y 2,96 respectivamente. Siguiendo con esto tambien se identifica que en este panorama de poca confianza hacia las instituciones, los municipios son quienes se ven mejor evaluados por parte de los ciudadanos, presentando una media de 3,96 lo que puede indicar una confianza menos degradada en comparación al resto de organismos del sistema politico.</p>
+</div><div class="column" style="width:60%;">
+<p><img data-src="output/graficos/grafico1.png"></p>
+</div>
+</div>
+</section>
+
+<section id="asociación-de-variables" class="title-slide slide level1 center">
+<h1>Asociación de variables</h1>
+
+<img data-src="output/graficos/tabla_cont1.png" class="r-stretch"></section>
+
+<section id="asociación-de-variables-1" class="title-slide slide level1 center">
+<h1>Asociación de variables</h1>
+<p>A partir de la información expresada en la tabla de contingencia, se puede determinar que sobre la confianza institucional si bien la mayoría de los ciudadanos se sitúan en un nivel bajo e intermedio de confianza, hay diferencias entre los distintos niveles de confianza según la religión del ciudadano pero estas diferencias se pueden atribuír a que por ejemplo en cada uno de los niveles de confianza hay un mayor porcentaje de personas de religión cristiana, lo que puede ser explicado por que esta categoría tiene muchos más casos que las otras. De este modo no se puede determinar con certeza que quienes sean religiosos presenten mayor confianza institucional que quienes no lo son.</p>
+</section>
+
+<section id="modelo-de-regresión-lineal" class="title-slide slide level1 center">
+<h1>Modelo de regresión lineal</h1>
+<div class="columns">
+<div class="column" style="width:52%;">
+<p><img data-src="output/graficos/modelo_regresion.png" style="width:52.0%"></p>
+</div><div class="column" style="width:48%;">
+<p>El modelo de regresión sobre la confianza institucional incluye la religión de los encuestados como variable independiente. De este modo los datos que proporciona el modelo estimado indican un intercepto de 3,25, que representa el nivel promedio de confianza institucional para quienes son de una religión cristiana. Para quienes son creyentes pero no son religiosos, el modelo estima 0,23 puntos menos de confianza en promedio respecto a los cristianos, diferencia estadísticamente significativa (p &lt; 0,01). También en el caso de quienes son de una religión no cristiana se presenta una disminución de confianza respecto a los cristianos de 0,14 puntos, por otro lado la confianza institucional en quienes no son creyentes se ve disminuida en 0,09 puntos en referencia a quienes son cristianos.</p>
+</div>
+</div>
+</section>
+
+<section id="gráfico-valores-predichos" class="title-slide slide level1 center">
+<h1>Gráfico valores predichos</h1>
+
+<img data-src="output/graficos/grafico1_valores_predichos.png" class="r-stretch"></section>
+
+<section id="conclusión" class="title-slide slide level1 center">
+<h1>Conclusión</h1>
+<p>En base al analisis realizado, no se demostraron diferencias estadísticamente significativas entre los distintos grupos de la variable sobre religión respecto a los niveles de confianza institucional. El modelo de regresión solo logra explicar el 1% de la vairiabilidad sobre la confianza institucional, por tanto en base a lo estimado la religión no tiene demasiada incidencia sobre cómo se comporten los niveles de confianza institucional. A partir de esto se reconoce como un problema que puede haber influenciado en este análisis refiere la disparidad en cuanto a cantidad de casos entre las categorías de la variable de religión</p>
+</section>
+
+<section id="referencias" class="title-slide slide level1 smaller scrollable">
+<h1>Referencias</h1>
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
+</div>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-ignaciocaceresReincorporandoReligionComprension2022" class="csl-entry" role="listitem">
+Ignacio Cáceres. 2022. <span>“Reincorporando La Religi<span>ó</span>n En La Comprensi<span>ó</span>n de La Cohesi<span>ó</span>n Social En <span class="nocase">Latinoam<span class="nocase">é</span>rica</span>.”</span> <em>Revista Temas Sociol<span>ó</span>gicos</em>, no. 30 (July): 137–67. <a href="https://doi.org/10.29344/07196458.30.3194">https://doi.org/10.29344/07196458.30.3194</a>.
+</div>
 </div>
 </section>
     </div>
@@ -373,7 +459,6 @@ Valentina Veas
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -634,10 +719,27 @@ Valentina Veas
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -647,8 +749,17 @@ Valentina Veas
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -662,7 +773,11 @@ Valentina Veas
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

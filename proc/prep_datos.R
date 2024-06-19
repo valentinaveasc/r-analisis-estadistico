@@ -173,7 +173,7 @@ colores_personalizados = c("#16A085", "#1ABC9C", "#76D7C4", "#A3E4D7", "#D1F2EB"
 grafico1 = sjPlot::plot_stackfrq(dplyr::select(proc_data, conf_congreso,
                                                 conf_partpol,
                                                 conf_presidente,
-                                                conf_cortsup),
+                                                conf_cortsup, conf_mun),
                                   title = "Confianza en instituciones políticas") +
   theme(legend.position="bottom") + 
   scale_fill_manual(values = c("#D1F2EB", "#A3E4D7", "#76D7C4", "#1ABC9C", "#16A085", "#117864", "#0E6251"))
@@ -269,6 +269,9 @@ proc_data3$indice_disp_inst = set_label(x = proc_data3$indice_disp_inst,label = 
 frq(proc_data3$indice_disp_inst)
 
 #Tablas de contingencia
+proc_data3 <- proc_data3 %>%
+  mutate(indice_confianza = factor(indice_confianza, levels = c("Nada de confianza", "Poca confianza", "Algo de confianza", "Moderada confianza", "Mucha confianza", "Absoluta confianza")))
+
 sjt.xtab(proc_data3$religion, proc_data3$indice_confianza,
          show.col.prc=TRUE,
          show.summary=FALSE,
