@@ -22,7 +22,7 @@ Se propone como objeto central de esta investigación poder observar la confianz
 
 ::: columns
 ::: {.column width="40%"}
-Se puede señalar que hay una presencia considerable de personas que se identifican con una religión, la mayoría se categoriza en una religión cristiana, conformando el 56,1% de la muestra. Siguiendo con esto quienes son creyentes pero no se identifican con ninguna religión representan la segunda mayoría, con un total de 459 casos, de esta manera quienes se identifican con una religión no cristiana y quienes no son creyentes representan una minoría, haciendo en conjunto un total de 201 casos, valor que no supera las categorías anteriores.
+Se puede señalar que hay una presencia considerable de personas que se identifican con una religión, la mayoría se categoriza en una religión cristiana, conformando el 55,3% de la muestra. Siguiendo con esto quienes son creyentes pero no se identifican con ninguna religión representan la segunda mayoría, con un total de 459 casos, de esta manera quienes se identifican con una religión no cristiana y quienes no son creyentes representan una minoría, haciendo en conjunto un total de 201 casos, valor que no supera las categorías anteriores.
 :::
 
 ::: {.column width="60%"}
@@ -66,10 +66,8 @@ El modelo de regresión sobre la confianza institucional incluye la religión de
 
 ![](output/graficos/grafico1_valores_predichos.png)
 
-
-
 # Conclusión
 
-En base al analisis realizado, no se demostraron diferencias estadísticamente significativas entre los distintos grupos de la variable sobre religión respecto a los niveles de confianza institucional. El modelo de regresión solo logra explicar el 1% de la vairiabilidad sobre la confianza institucional, por tanto en base a lo estimado la religión no tiene demasiada incidencia sobre cómo se comporten los niveles de confianza institucional. A partir de esto se reconoce como un problema que puede haber influenciado en este análisis refiere la disparidad en cuanto a cantidad de casos entre las categorías de la variable de religión
+En base al analisis realizado, no se demostraron diferencias estadísticamente significativas entre los distintos grupos de la variable sobre religión respecto a los niveles de confianza institucional. El modelo de regresión no logra explicar la variabilidad sobre la confianza institucional (R^2^ajustado = 0.00). Por tanto en base a lo estimado la religión no tiene incidencia sobre cómo se comporten los niveles de confianza institucional. A partir de esto se reconoce como un problema que puede haber influenciado en este análisis refiere la disparidad en cuanto a cantidad de casos entre las categorías de la variable de religión
 
 # Referencias
